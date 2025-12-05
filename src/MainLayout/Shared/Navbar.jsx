@@ -2,7 +2,11 @@ import React from "react";
 import { NavLink } from "react-router";
 import Logo from "../../components/Logo";
 
+import Toggle from "../../components/Toggle";
+
 const Navbar = () => {
+  const user = false;
+
   const Links = (
     <>
       <li>
@@ -14,9 +18,36 @@ const Navbar = () => {
       <li>
         <NavLink to="/about-us">About Us</NavLink>
       </li>
+
       <li>
         <NavLink to="/contact-us">Contact Us</NavLink>
       </li>
+      {user ? (
+        <>
+          <li>
+            <NavLink className="btn btn-primary btn-outline" to="/logout">
+              Logout
+            </NavLink>
+          </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <NavLink className="btn btn-primary btn-outline" to="/login">
+              Login
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="btn btn-primary btn-outline mx-5"
+              to="/Register"
+            >
+              Register
+            </NavLink>
+          </li>
+        </>
+      )}
+      <Toggle />
     </>
   );
   return (
