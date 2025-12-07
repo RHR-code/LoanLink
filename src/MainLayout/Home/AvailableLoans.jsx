@@ -1,9 +1,17 @@
 import React from "react";
 import LoanCard from "./LoanCard";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosInstance from "../../Hooks/useAxiosInstance";
 
 const AvailableLoans = () => {
-  const loans = [];
-
+  const axiosInstance = useAxiosInstance();
+  const { data: loans = [] } = useQuery({
+    queryKey: ["available-loans"],
+    queryFn: async () => {
+      const res = await axiosInstance.get("/loans");
+      return res.data;
+    },
+  });
   return (
     <div className="mt-24 px-10">
       <h1 className="text-5xl font-bold text-center pb-10 text-primary">
