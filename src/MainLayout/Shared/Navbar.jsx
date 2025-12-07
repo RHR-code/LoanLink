@@ -13,7 +13,7 @@ const Navbar = () => {
         <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink to="/all-loans">All loans</NavLink>
+        <NavLink to="/all-loans">All Loans</NavLink>
       </li>
       <li>
         <NavLink to="/about-us">About Us</NavLink>
@@ -25,7 +25,7 @@ const Navbar = () => {
       {user ? (
         <>
           <li>
-            <NavLink className="btn btn-primary btn-outline" to="/logout">
+            <NavLink className="md:btn btn-primary btn-outline" to="/logout">
               Logout
             </NavLink>
           </li>
@@ -33,13 +33,13 @@ const Navbar = () => {
       ) : (
         <>
           <li>
-            <NavLink className="btn btn-primary btn-outline" to="/login">
+            <NavLink className="md:btn btn-primary btn-outline" to="/login">
               Login
             </NavLink>
           </li>
           <li>
             <NavLink
-              className="btn btn-primary btn-outline mx-5"
+              className="md:btn btn-primary btn-outline md:mx-5"
               to="/Register"
             >
               Register
@@ -47,11 +47,10 @@ const Navbar = () => {
           </li>
         </>
       )}
-      <Toggle />
     </>
   );
   return (
-    <div>
+    <div className="md:px-10 pr-5">
       <div className="navbar bg-base-100 shadow-sm">
         <div className="navbar-start">
           <div className="dropdown">
@@ -87,6 +86,7 @@ const Navbar = () => {
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">{Links}</ul>
           </div>
+          <Toggle />
         </div>
       </div>
     </div>

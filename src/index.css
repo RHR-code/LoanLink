@@ -5,4 +5,5 @@
   default: true;
   --color-primary: #2ec4b6;
   --color-secondary: #ff9f1c;
+  --color-base-200: #ede5da;
 }
