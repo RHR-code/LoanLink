@@ -1,0 +1,44 @@
+import React from "react";
+
+const LoanCard = ({ loan }) => {
+  const {
+    category,
+    description,
+    interest_rate,
+    loan_image,
+    loan_title,
+    max_limit,
+  } = loan;
+  return (
+    <div className="card bg-base-200 w-96  shadow-sm">
+      <figure>
+        <img
+          className="h-[250px] w-full object-cover"
+          src={loan_image}
+          alt="Shoes"
+        />
+      </figure>
+      <div className="card-body space-y-3">
+        <h2 className="card-title">
+          {loan_title}
+          <div className="badge badge-primary">{category}</div>
+        </h2>
+        <p>
+          A card component has a figure, a body part, and inside body there are
+          title and actions parts
+        </p>
+        <div className="card-actions justify-between">
+          <div className="badge  badge-outline">
+            <strong>Max Loan:</strong> {max_limit}
+          </div>
+          <div className="badge  badge-outline">
+            <strong>Interest:</strong> {interest_rate}
+          </div>
+        </div>
+        <button className="btn btn-primary">View Details</button>
+      </div>
+    </div>
+  );
+};
+
+export default LoanCard;
