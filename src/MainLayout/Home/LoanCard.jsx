@@ -10,7 +10,7 @@ const LoanCard = ({ loan }) => {
     max_limit,
   } = loan;
   return (
-    <div className="card bg-base-200 w-96  shadow-sm">
+    <div className="card bg-base-200 shadow-sm">
       <figure>
         <img
           className="h-[250px] w-full object-cover"
@@ -23,10 +23,7 @@ const LoanCard = ({ loan }) => {
           {loan_title}
           <div className="badge badge-primary">{category}</div>
         </h2>
-        <p>
-          A card component has a figure, a body part, and inside body there are
-          title and actions parts
-        </p>
+        <p>{description}</p>
         <div className="card-actions justify-between">
           <div className="badge  badge-outline">
             <strong>Max Loan:</strong> {max_limit}
