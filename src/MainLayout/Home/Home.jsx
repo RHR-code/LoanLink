@@ -4,6 +4,7 @@ import AvailableLoans from "./AvailableLoans";
 import HowItWorks from "./HowItWorks";
 import FeedBack from "./FeedBack";
 import Faq from "./Faq";
+import NewsLetter from "./NewsLetter";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <HowItWorks />
       <FeedBack />
       <Faq />
+      <NewsLetter />
     </div>
   );
 };
