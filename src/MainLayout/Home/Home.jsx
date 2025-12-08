@@ -3,6 +3,7 @@ import Banner from "./Banner";
 import AvailableLoans from "./AvailableLoans";
 import HowItWorks from "./HowItWorks";
 import FeedBack from "./FeedBack";
+import Faq from "./Faq";
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       <AvailableLoans />
       <HowItWorks />
       <FeedBack />
+      <Faq />
     </div>
   );
 };

@@ -93,7 +93,7 @@ const FeedBack = () => {
     ],
   };
   return (
-    <div className="mt-24">
+    <div className="mt-24 px-5 md:px-10">
       <h1 className="text-3xl md:text-5xl font-bold text-center pb-10 text-primary">
         Customer Feedback
       </h1>
