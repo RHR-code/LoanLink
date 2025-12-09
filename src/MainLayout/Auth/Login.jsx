@@ -1,7 +1,73 @@
 import React from "react";
+import { useForm } from "react-hook-form";
+import { Link } from "react-router";
 
 const Login = () => {
-  return <div>Login</div>;
+  const state = "something";
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const handleLogin = (data) => {
+    console.log(data);
+  };
+  return (
+    <div className="max-w-3/4 mx-auto p-10 rounded-2xl my-5 bg-base-200">
+      <h1 className="font-extrabold text-[42px] text-primary">Welcome Back</h1>
+      <p className="text-base font-medium py-5">Login with LoanLink</p>
+      <form onSubmit={handleSubmit(handleLogin)}>
+        <fieldset className="fieldset">
+          {/* email */}
+          <label className="label">Email</label>
+          <input
+            type="email"
+            {...register("email", { required: true })}
+            className="input w-full"
+            placeholder="Email"
+          />
+          {errors.email?.type === "required" && (
+            <p className="text-red-500">Email is required</p>
+          )}
+          {/* password */}
+          <label className="label">Password</label>
+          <input
+            type="password"
+            {...register("password", {
+              required: true,
+              minLength: 6,
+            })}
+            className="input w-full"
+            placeholder="Password"
+          />
+          {errors.password?.type === "required" && (
+            <p className="text-red-500">Password is required</p>
+          )}
+          {errors.password?.type === "minLength" && (
+            <p className="text-red-500">
+              Password must be 6 character or longer
+            </p>
+          )}
+          <div>
+            <a className="link link-hover">Forgot password?</a>
+          </div>
+          <button className="btn btn-primary mt-4 w-full">Login</button>
+          <div>
+            <p>
+              New to LoanLink?
+              <Link
+                state={state}
+                to="/register"
+                className="text-blue-500 underline"
+              >
+                Register
+              </Link>
+            </p>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  );
 };
 
 export default Login;
