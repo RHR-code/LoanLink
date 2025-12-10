@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import Loader from "../../components/Loader";
+import SocialLogin from "./SocialLogin";
 
 const Login = () => {
   const { loading, userLogin } = useAuth();
@@ -66,6 +67,7 @@ const Login = () => {
             <a className="link link-hover">Forgot password?</a>
           </div>
           <button className="btn btn-primary mt-4 w-full">Login</button>
+          <SocialLogin />
           <div>
             <p>
               New to LoanLink?

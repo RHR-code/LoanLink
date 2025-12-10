@@ -3,9 +3,20 @@ import { NavLink } from "react-router";
 import Logo from "../../components/Logo";
 
 import Toggle from "../../components/Toggle";
+import useAuth from "../../Hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
-  const user = false;
+  const { user, userLogout } = useAuth();
+  const handleSignout = () => {
+    userLogout()
+      .then(() => {
+        toast.success("Successfully Signed Out!");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
 
   const Links = (
     <>
@@ -24,10 +35,8 @@ const Navbar = () => {
       </li>
       {user ? (
         <>
-          <li>
-            <NavLink className="md:btn btn-primary btn-outline" to="/logout">
-              Logout
-            </NavLink>
+          <li onClick={handleSignout}>
+            <button className="md:btn btn-primary btn-outline">Logout</button>
           </li>
         </>
       ) : (

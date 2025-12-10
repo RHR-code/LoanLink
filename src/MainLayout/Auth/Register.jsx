@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import axios from "axios";
 import toast from "react-hot-toast";
+import SocialLogin from "./SocialLogin";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -111,6 +112,7 @@ const Register = () => {
           )}
 
           <button className="btn btn-primary mt-4 w-full  ">Register</button>
+          <SocialLogin />
           <div>
             <p>
               Already have an account?

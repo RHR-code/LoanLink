@@ -14,22 +14,8 @@ const router = createBrowserRouter(
   createRoutesFromElements([
     <Route path="/" Component={MainLayout}>
       <Route index={true} Component={Home} />
-      <Route
-        path="/login"
-        element={
-          <PrivateRoute>
-            <Login />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/register"
-        element={
-          <PrivateRoute>
-            <Register />
-          </PrivateRoute>
-        }
-      />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
     </Route>,
   ])
 );
