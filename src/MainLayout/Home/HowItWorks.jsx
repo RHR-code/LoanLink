@@ -35,7 +35,10 @@ const HowItWorks = () => {
       <div className="bg-primary p-5 md:p-10">
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2  lg:grid-cols-3">
           {Infos.map((info) => (
-            <div className="card bg-white/40 backdrop-blur-2xl pb-5  shadow-sm">
+            <div
+              key={info.step}
+              className="card bg-white/40 backdrop-blur-2xl pb-5  shadow-sm"
+            >
               <div className="card-body">
                 <h2 className="card-title">{info.title}</h2>
                 <p>{info.description}</p>

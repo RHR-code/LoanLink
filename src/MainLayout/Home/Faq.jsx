@@ -46,7 +46,10 @@ const Faq = () => {
         Frequently Asked Questions
       </h1>
       {faqs.map((faq) => (
-        <div className="collapse collapse-arrow bg-base-200 border border-base-300 my-2">
+        <div
+          key={faq.id}
+          className="collapse collapse-arrow bg-base-200 border border-base-300 my-2"
+        >
           <input type="radio" name="my-accordion-2" defaultChecked />
           <div className="collapse-title font-semibold">{faq.title}</div>
           <div className="collapse-content text-sm">{faq.description}</div>

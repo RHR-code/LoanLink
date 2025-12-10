@@ -1,9 +1,15 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
+import useAuth from "../../Hooks/useAuth";
+import toast from "react-hot-toast";
+import Loader from "../../components/Loader";
 
 const Login = () => {
-  const state = "something";
+  const { loading, userLogin } = useAuth();
+  const navigate = useNavigate();
+  const { state } = useLocation();
+
   const {
     register,
     handleSubmit,
@@ -11,6 +17,14 @@ const Login = () => {
   } = useForm();
   const handleLogin = (data) => {
     console.log(data);
+    userLogin(data.email, data.password)
+      .then(() => {
+        navigate(state ? state : "/");
+        toast.success("Successfully LoggedIn!");
+      })
+      .catch((error) => {
+        console.log(error.code);
+      });
   };
   return (
     <div className="max-w-3/4 mx-auto p-10 rounded-2xl my-5 bg-base-200">

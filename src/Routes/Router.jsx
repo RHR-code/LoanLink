@@ -8,13 +8,28 @@ import Home from "../MainLayout/Home/Home";
 import MainLayout from "../MainLayout/MainLayout/MainLayout";
 import Login from "../MainLayout/Auth/Login";
 import Register from "../MainLayout/Auth/Register";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter(
   createRoutesFromElements([
     <Route path="/" Component={MainLayout}>
       <Route index={true} Component={Home} />
-      <Route path="/login" Component={Login} />
-      <Route path="/register" Component={Register} />
+      <Route
+        path="/login"
+        element={
+          <PrivateRoute>
+            <Login />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/register"
+        element={
+          <PrivateRoute>
+            <Register />
+          </PrivateRoute>
+        }
+      />
     </Route>,
   ])
 );

@@ -1,12 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import axios from "axios";
 import toast from "react-hot-toast";
 
 const Register = () => {
-  const state = "something";
+  const navigate = useNavigate();
+  const { state } = useLocation();
   const { loading, userRegister, updateUserProfile } = useAuth();
 
   const {
@@ -39,6 +40,7 @@ const Register = () => {
               console.log(error.code);
             });
         });
+        navigate(state ? state : "/");
         toast.success("Successfully Registered!");
       })
       .catch((error) => {
