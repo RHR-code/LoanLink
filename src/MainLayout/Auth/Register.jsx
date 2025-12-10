@@ -2,10 +2,12 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 import useAuth from "../../Hooks/useAuth";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const state = "something";
-  const { loading, userRegister } = useAuth();
+  const { loading, userRegister, updateUserProfile } = useAuth();
 
   const {
     register,
@@ -13,7 +15,35 @@ const Register = () => {
     formState: { errors },
   } = useForm();
   const handleRegister = (data) => {
-    console.log(data);
+    const profileImage = data.photo[0];
+    userRegister(data.email, data.password)
+      .then((res) => {
+        console.log(res.user);
+        const formData = new FormData();
+        formData.append("image", profileImage);
+        const Image_Api_Url = `https://api.imgbb.com/1/upload?&key=${
+          import.meta.env.VITE_Image_Host_Api
+        }`;
+
+        axios.post(Image_Api_Url, formData).then((res) => {
+          console.log("after image upload", res.data);
+          const userProfile = {
+            displayName: data.name,
+            photoURL: res.data.data.url,
+          };
+          updateUserProfile(userProfile)
+            .then((res) => {
+              console.log(res.data);
+            })
+            .catch((error) => {
+              console.log(error.code);
+            });
+        });
+        toast.success("Successfully Registered!");
+      })
+      .catch((error) => {
+        toast.error(error.code);
+      });
   };
   return (
     <div className="max-w-3/4 mx-auto bg-base-200 p-10 my-5 rounded-2xl ">
