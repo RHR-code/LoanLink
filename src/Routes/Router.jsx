@@ -9,11 +9,13 @@ import MainLayout from "../MainLayout/MainLayout/MainLayout";
 import Login from "../MainLayout/Auth/Login";
 import Register from "../MainLayout/Auth/Register";
 import PrivateRoute from "./PrivateRoute";
+import AllLoans from "../MainLayout/Pages/AllLoans";
 
 const router = createBrowserRouter(
   createRoutesFromElements([
     <Route path="/" Component={MainLayout}>
       <Route index={true} Component={Home} />
+      <Route path="/all-loans" Component={AllLoans} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
     </Route>,
