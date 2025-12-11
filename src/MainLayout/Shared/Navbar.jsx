@@ -20,47 +20,56 @@ const Navbar = () => {
 
   const Links = (
     <>
-      <li>
-        <NavLink to="/">Home</NavLink>
-      </li>
-      <li>
-        <NavLink to="/all-loans">All Loans</NavLink>
-      </li>
-      <li>
-        <NavLink to="/about-us">About Us</NavLink>
-      </li>
+      <div className="flex items-center">
+        <li>
+          <NavLink to="/">Home</NavLink>
+        </li>
+        <li>
+          <NavLink to="/all-loans">All Loans</NavLink>
+        </li>
+        <li>
+          <NavLink to="/about-us">About Us</NavLink>
+        </li>
 
-      <li>
-        <NavLink to="/contact-us">Contact Us</NavLink>
-      </li>
-      {user ? (
-        <>
-          <li onClick={handleSignout}>
-            <button className="md:btn btn-primary btn-outline">Logout</button>
-          </li>
-        </>
-      ) : (
-        <>
-          <li>
-            <NavLink className="md:btn btn-primary btn-outline" to="/login">
-              Login
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className="md:btn btn-primary btn-outline md:mx-5"
-              to="/Register"
-            >
-              Register
-            </NavLink>
-          </li>
-        </>
-      )}
+        <li>
+          <NavLink to="/contact-us">Contact Us</NavLink>
+        </li>
+        {user ? (
+          <>
+            <div className="flex items-center">
+              <li onClick={handleSignout}>
+                <button className="md:btn btn-primary btn-outline">
+                  Logout
+                </button>
+              </li>
+              <li>
+                <img className="w-16" src={user.photoURL} alt="" />
+              </li>
+            </div>
+          </>
+        ) : (
+          <>
+            <li>
+              <NavLink className="md:btn btn-primary btn-outline" to="/login">
+                Login
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className="md:btn btn-primary btn-outline md:mx-5"
+                to="/Register"
+              >
+                Register
+              </NavLink>
+            </li>
+          </>
+        )}
+      </div>
     </>
   );
   return (
-    <div className="md:px-10 pr-5">
-      <div className="navbar bg-base-100 shadow-sm">
+    <div>
+      <div className="md:px-10 navbar bg-base-300 shadow-sm">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
