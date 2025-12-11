@@ -1,7 +1,8 @@
 import React from "react";
 import useAxiosInstance from "../../Hooks/useAxiosInstance";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
+import Loader from "../../components/Loader";
 
 const LoanDetails = () => {
   const axiosInstance = useAxiosInstance();
@@ -13,6 +14,7 @@ const LoanDetails = () => {
       return res.data;
     },
   });
+  isLoading && <Loader />;
   return (
     <div className="px-10 my-10">
       <div className="card lg:card-side bg-base-100 shadow-sm">
@@ -37,14 +39,23 @@ const LoanDetails = () => {
           </p>
           <h2 className="font-semibold text-xl">Our Emi Plans</h2>
           <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-            {loan.available_emi_plans.map((emi, ind) => (
+            {loan.available_emi_plans?.map((emi, ind) => (
               <p key={ind} className="badge badge-outline ">
                 {emi}
               </p>
             ))}
           </div>
           <div className="card-actions justify-end">
-            <button className="btn btn-primary ">Apply Now</button>
+            <Link
+              state={{
+                title: loan.loan_title,
+                interest_rate: loan.interest_rate,
+              }}
+              to="/apply-loan"
+              className="btn btn-primary "
+            >
+              Apply Now
+            </Link>
           </div>
         </div>
       </div>

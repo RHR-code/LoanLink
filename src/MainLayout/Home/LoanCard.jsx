@@ -25,7 +25,7 @@ const LoanCard = ({ loan }) => {
           {loan_title}
           <div className="badge badge-primary">{category}</div>
         </h2>
-        <p>{description}</p>
+        <p className="line-clamp-2">{description}</p>
         <div className="card-actions justify-between">
           <div className="badge  badge-outline">
             <strong>Max Loan:</strong> {max_limit}

@@ -1,6 +1,7 @@
 import React from "react";
 import { GoArrowUpRight } from "react-icons/go";
 import bannerImg from "../../assets/banner-img.jpg";
+import { Link } from "react-router";
 const Banner = () => {
   return (
     <div className="flex flex-col-reverse gap-10 md:flex-row justify-between items-center bg-base-200 md:h-[500px] p-5 md:px-10">
@@ -16,9 +17,12 @@ const Banner = () => {
           your personal financial needs, helping you borrow with clarity and
           confidence.
         </p>
-        <button className="btn btn-primary text-black rounded-full ">
+        <Link
+          to="/apply-loan"
+          className="btn btn-primary text-black rounded-full "
+        >
           Apply For Loan <GoArrowUpRight size={20} />
-        </button>
+        </Link>
       </div>
       <div className="md:flex-1 ">
         <img src={bannerImg} alt="" />
