@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 const LoanCard = ({ loan }) => {
   const {
@@ -8,6 +9,7 @@ const LoanCard = ({ loan }) => {
     loan_image,
     loan_title,
     max_limit,
+    _id,
   } = loan;
   return (
     <div className="card bg-base-200 shadow-sm">
@@ -32,7 +34,9 @@ const LoanCard = ({ loan }) => {
             <strong>Interest:</strong> {interest_rate}
           </div>
         </div>
-        <button className="btn btn-primary">View Details</button>
+        <Link to={_id} className="btn btn-primary">
+          View Details
+        </Link>
       </div>
     </div>
   );
