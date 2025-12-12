@@ -19,7 +19,7 @@ const router = createBrowserRouter(
       <Route index={true} Component={Home} />
       <Route path="/all-loans" Component={AllLoans} />
       <Route
-        path="/all-loans/:id"
+        path="/loan-details/:id"
         element={
           <PrivateRoute>
             <LoanDetails />

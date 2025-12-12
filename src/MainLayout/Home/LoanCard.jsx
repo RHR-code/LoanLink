@@ -34,7 +34,7 @@ const LoanCard = ({ loan }) => {
             <strong>Interest:</strong> {interest_rate}
           </div>
         </div>
-        <Link to={_id} className="btn btn-primary">
+        <Link to={`/loan-details/${_id}`} className="btn btn-primary">
           View Details
         </Link>
       </div>

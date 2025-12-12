@@ -59,7 +59,7 @@ const Register = () => {
           <label className="label">Name</label>
           <input
             type="text"
-            {...register("name")}
+            {...register("name", { required: true })}
             className="input w-full"
             placeholder="Your Name"
           />
@@ -69,7 +69,7 @@ const Register = () => {
           <label className="label">Upload Photo</label>
           <input
             type="file"
-            {...register("photo")}
+            {...register("photo", { required: true })}
             className="file-input file-input-primary"
             placeholder="Your Photo"
           />
@@ -79,7 +79,7 @@ const Register = () => {
           <label className="label">Email</label>
           <input
             type="email"
-            {...register("email")}
+            {...register("email", { required: true })}
             className="input w-full"
             placeholder="Email"
           />
@@ -90,6 +90,7 @@ const Register = () => {
           <input
             type="password"
             {...register("password", {
+              required: true,
               minLength: 6,
               pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).+$/,
             })}
