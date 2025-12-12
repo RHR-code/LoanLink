@@ -5,12 +5,13 @@ import useAuth from "../../Hooks/useAuth";
 import axios from "axios";
 import toast from "react-hot-toast";
 import SocialLogin from "./SocialLogin";
+import useAxiosInstance from "../../Hooks/useAxiosInstance";
 
 const Register = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const { loading, userRegister, updateUserProfile } = useAuth();
-
+  const { loading, user, userRegister, updateUserProfile } = useAuth();
+  const AxiosInstance = useAxiosInstance();
   const {
     register,
     handleSubmit,
@@ -33,6 +34,15 @@ const Register = () => {
             displayName: data.name,
             photoURL: res.data.data.url,
           };
+          // ADDING USER TO DATABASE
+          const userInfo = {
+            name: data.name,
+            email: data.email,
+            photoURL: res.data.data.url,
+          };
+          AxiosInstance.post("/users", userInfo).then((res) => {
+            console.log("user", res.data);
+          });
           updateUserProfile(userProfile)
             .then((res) => {
               console.log(res.data);

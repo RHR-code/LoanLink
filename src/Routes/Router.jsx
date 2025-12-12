@@ -12,6 +12,8 @@ import PrivateRoute from "./PrivateRoute";
 import AllLoans from "../MainLayout/Pages/AllLoans";
 import LoanDetails from "../MainLayout/Pages/LoanDetails";
 import ApplyForLoan from "../MainLayout/Pages/ApplyForLoan";
+import DashboardLayout from "../DashboardLayout/DashboardLayout/DashboardLayout";
+import ManageUsers from "../DashboardLayout/AdminPages/ManageUsers";
 
 const router = createBrowserRouter(
   createRoutesFromElements([
@@ -29,6 +31,9 @@ const router = createBrowserRouter(
       <Route path="/apply-loan" element={<ApplyForLoan />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+    </Route>,
+    <Route path="/dashboard" Component={DashboardLayout}>
+      <Route path="/dashboard/manage-users" Component={ManageUsers} />
     </Route>,
   ])
 );
