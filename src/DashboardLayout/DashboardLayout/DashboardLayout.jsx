@@ -3,6 +3,8 @@ import Logo from "../../components/Logo";
 import logoImg from "../../assets/investment.png";
 import { Link, Outlet } from "react-router";
 import { HiUsers } from "react-icons/hi2";
+import { RiMoneyDollarCircleLine } from "react-icons/ri";
+import { RiFileList3Line } from "react-icons/ri";
 
 const DashboardLayout = () => {
   return (
@@ -68,18 +70,44 @@ const DashboardLayout = () => {
               </button>
             </li>
 
-            {/* List item */}
+            {/* ADMIN ONLY PAGES */}
+
+            <li>
+              <Link
+                to="/dashboard/all-loan"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="All Loans"
+              >
+                {/* Loans icon */}
+                <RiMoneyDollarCircleLine />
+                <span className="is-drawer-close:hidden">All Loans</span>
+              </Link>
+            </li>
             <li>
               <Link
                 to="/dashboard/manage-users"
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Manage Users"
               >
-                {/* Settings icon */}
+                {/* users icon */}
                 <HiUsers />
                 <span className="is-drawer-close:hidden">Manage Users</span>
               </Link>
             </li>
+            <li>
+              <Link
+                to="/dashboard/loan-applications"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Loan Applications"
+              >
+                {/* loan application icon */}
+                <RiFileList3Line />
+                <span className="is-drawer-close:hidden">
+                  Loan Applications
+                </span>
+              </Link>
+            </li>
+            {/* Setting */}
             <li>
               <button
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"

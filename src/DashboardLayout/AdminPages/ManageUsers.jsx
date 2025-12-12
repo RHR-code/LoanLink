@@ -1,16 +1,45 @@
 import React from "react";
 import useAxiosInstance from "../../Hooks/useAxiosInstance";
 import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 const ManageUsers = () => {
   const axiosInstance = useAxiosInstance();
-  const { data: users = [], isLoading } = useQuery({
+  const {
+    data: users = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosInstance.get("/users");
       return res.data;
     },
   });
+  const handleApprove = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do You Want To Change the Role!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Change it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosInstance.patch(`/users/${id}`).then((res) => {
+          if (res.data.modifiedCount) {
+            refetch();
+            Swal.fire({
+              title: "Successful!",
+              text: "The Role Has Been Changes To Manager",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
   return (
     <div>
       <div className="overflow-x-auto">
@@ -50,7 +79,12 @@ const ManageUsers = () => {
                 </td>
                 <td>{user.role}</td>
                 <th>
-                  <button className="btn bg-green-500 btn-xs">Approve</button>
+                  <button
+                    onClick={() => handleApprove(user._id)}
+                    className="btn bg-green-500 btn-xs"
+                  >
+                    Approve
+                  </button>
                   <button className="btn bg-red-500 btn-xs">Suspend</button>
                 </th>
               </tr>
