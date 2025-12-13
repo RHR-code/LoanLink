@@ -53,7 +53,7 @@ const ApplyForLoan = () => {
   const handleApplyLoan = (data) => {
     console.log(data);
     axiosInstance
-      .post("/loans", data)
+      .post("/loan-application", data)
       .then((res) => {
         console.log(res.data);
       })
