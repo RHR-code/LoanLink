@@ -5,11 +5,14 @@ import Loader from "../../components/Loader";
 
 const LoanApplications = () => {
   const [selectedLoanId, setSelectedLoanId] = useState(null);
+  const [Status, setStatus] = useState("");
+  console.log(Status);
+
   const axiosInstance = useAxiosInstance();
   const { data: LoanApplications = [] } = useQuery({
-    queryKey: ["all-loan-applications"],
+    queryKey: ["all-loan-applications", Status],
     queryFn: async () => {
-      const res = await axiosInstance.get("/loan-application");
+      const res = await axiosInstance.get(`/loan-application?Status=${Status}`);
       return res.data;
     },
   });
@@ -34,6 +37,18 @@ const LoanApplications = () => {
   };
   return (
     <div>
+      <div className="flex justify-end py-5">
+        <select
+          onChange={(e) => setStatus(e.target.value)}
+          defaultValue="Pick a color"
+          className="select"
+        >
+          <option value="">Filter By Status</option>
+          <option value="Pending">Pending</option>
+          <option value="Approved">Approved</option>
+          <option value="Rejected">Rejected</option>
+        </select>
+      </div>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
