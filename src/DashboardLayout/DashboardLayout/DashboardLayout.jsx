@@ -5,8 +5,11 @@ import { Link, Outlet } from "react-router";
 import { HiUsers } from "react-icons/hi2";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { RiFileList3Line } from "react-icons/ri";
+import useRole from "../../Hooks/useRole";
 
 const DashboardLayout = () => {
+  const userRole = useRole();
+  console.log(userRole);
   return (
     <div className="drawer lg:drawer-open">
       <input
@@ -39,7 +42,7 @@ const DashboardLayout = () => {
               <path d="M14 10l2 2l-2 2"></path>
             </svg>
           </label>
-          <div className="px-4">Admin Dashboard</div>
+          <div className="px-4"> {userRole} Dashboard</div>
         </nav>
         {/* Page content here */}
         <Outlet />
@@ -71,42 +74,46 @@ const DashboardLayout = () => {
             </li>
 
             {/* ADMIN ONLY PAGES */}
+            {userRole === "Admin" && (
+              <>
+                <li>
+                  <Link
+                    to="/dashboard/all-loan"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="All Loans"
+                  >
+                    {/* Loans icon */}
+                    <RiMoneyDollarCircleLine />
+                    <span className="is-drawer-close:hidden">All Loans</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/dashboard/manage-users"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Manage Users"
+                  >
+                    {/* users icon */}
+                    <HiUsers />
+                    <span className="is-drawer-close:hidden">Manage Users</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/dashboard/loan-applications"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Loan Applications"
+                  >
+                    {/* loan application icon */}
+                    <RiFileList3Line />
+                    <span className="is-drawer-close:hidden">
+                      Loan Applications
+                    </span>
+                  </Link>
+                </li>
+              </>
+            )}
 
-            <li>
-              <Link
-                to="/dashboard/all-loan"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="All Loans"
-              >
-                {/* Loans icon */}
-                <RiMoneyDollarCircleLine />
-                <span className="is-drawer-close:hidden">All Loans</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/dashboard/manage-users"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Manage Users"
-              >
-                {/* users icon */}
-                <HiUsers />
-                <span className="is-drawer-close:hidden">Manage Users</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/dashboard/loan-applications"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Loan Applications"
-              >
-                {/* loan application icon */}
-                <RiFileList3Line />
-                <span className="is-drawer-close:hidden">
-                  Loan Applications
-                </span>
-              </Link>
-            </li>
             {/* Setting */}
             <li>
               <button

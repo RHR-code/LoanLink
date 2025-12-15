@@ -34,9 +34,10 @@ const router = createBrowserRouter(
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
     </Route>,
+    // Dashboard Routes
     <Route path="/dashboard" Component={DashboardLayout}>
-      <Route path="/dashboard/manage-users" Component={ManageUsers} />
       <Route path="/dashboard/all-loan" Component={AllLoansDashboard} />
+      <Route path="/dashboard/manage-users" Component={ManageUsers} />
       <Route path="/dashboard/loan-applications" Component={LoanApplications} />
     </Route>,
   ])

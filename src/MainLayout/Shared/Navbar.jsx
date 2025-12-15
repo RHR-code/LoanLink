@@ -5,9 +5,11 @@ import Logo from "../../components/Logo";
 import Toggle from "../../components/Toggle";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
+import useRole from "../../Hooks/useRole";
 
 const Navbar = () => {
   const { user, userLogout } = useAuth();
+
   const handleSignout = () => {
     userLogout()
       .then(() => {
@@ -51,7 +53,7 @@ const Navbar = () => {
                 </button>
               </li>
               <li>
-                <img className="w-16" src={user.photoURL} alt="" />
+                <img className="w-16" src={user?.photoURL} alt="" />
               </li>
             </div>
           </>

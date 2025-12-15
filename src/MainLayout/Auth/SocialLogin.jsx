@@ -2,15 +2,26 @@ import React from "react";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router";
+import useAxiosInstance from "../../Hooks/useAxiosInstance";
 
 const SocialLogin = () => {
   const { googleLogin } = useAuth();
   const navigate = useNavigate();
+  const AxiosInstance = useAxiosInstance();
   const { state } = useLocation();
   const handleGoogleLogin = () => {
     googleLogin()
       .then((res) => {
         console.log(res.user);
+        // ADDING USER TO DATABASE
+        const userInfo = {
+          name: res.user.displayName,
+          email: res.user.email,
+          photoURL: res.user.photoURL,
+        };
+        AxiosInstance.post("/users", userInfo).then((res) => {
+          console.log("user", res.data);
+        });
         toast.success("Successfully LoggedIn!");
         navigate(state ? state : "/");
       })
