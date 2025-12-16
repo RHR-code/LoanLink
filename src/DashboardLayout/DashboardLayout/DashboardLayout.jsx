@@ -8,7 +8,7 @@ import { RiFileList3Line } from "react-icons/ri";
 import useRole from "../../Hooks/useRole";
 
 const DashboardLayout = () => {
-  const userRole = useRole();
+  const { userRole } = useRole();
   console.log(userRole);
   return (
     <div className="drawer lg:drawer-open">

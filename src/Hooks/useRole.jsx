@@ -7,15 +7,17 @@ const useRole = () => {
   const axiosInstance = useAxiosInstance();
   const { user } = useAuth();
 
-  const { data: userRole = {}, isLoading } = useQuery({
+  const { data: userRole = "user", isLoading: roleLoading } = useQuery({
     queryKey: ["user-role", user?.email],
     enabled: !!user?.email,
     queryFn: async () => {
       const res = await axiosInstance.get(`/user-role?email=${user?.email}`);
-      return res.data;
+      console.log("role", res.data.role);
+
+      return res.data.role;
     },
   });
-  return userRole?.role ? userRole.role : "User";
+  return { userRole, roleLoading };
 };
 
 export default useRole;

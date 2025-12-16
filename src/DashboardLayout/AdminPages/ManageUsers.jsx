@@ -2,9 +2,11 @@ import React from "react";
 import useAxiosInstance from "../../Hooks/useAxiosInstance";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const ManageUsers = () => {
-  const axiosInstance = useAxiosInstance();
+  // const axiosInstance = useAxiosInstance();
+  const axiosSecure = useAxiosSecure();
   const {
     data: users = [],
     isLoading,
@@ -12,7 +14,7 @@ const ManageUsers = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await axiosInstance.get("/users");
+      const res = await axiosSecure.get("/users");
       return res.data;
     },
   });
@@ -27,7 +29,7 @@ const ManageUsers = () => {
       confirmButtonText: "Yes, Change it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosInstance.patch(`/users/${id}`).then((res) => {
+        axiosSecure.patch(`/users/${id}`).then((res) => {
           if (res.data.modifiedCount) {
             refetch();
             Swal.fire({

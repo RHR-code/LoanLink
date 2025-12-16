@@ -5,6 +5,7 @@ import Loader from "../../components/Loader";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const AllLoansDashboard = () => {
   const [selectedLoanId, setSelectedLoanId] = useState(null);
@@ -18,7 +19,8 @@ const AllLoansDashboard = () => {
     formState: { errors },
   } = useForm();
 
-  const axiosInstance = useAxiosInstance();
+  // const axiosInstance = useAxiosInstance();
+  const axiosSecure = useAxiosSecure();
   const {
     data: loans = [],
     isLoading,
@@ -26,7 +28,7 @@ const AllLoansDashboard = () => {
   } = useQuery({
     queryKey: ["all-loans"],
     queryFn: async () => {
-      const res = await axiosInstance.get("/loans");
+      const res = await axiosSecure.get("/loans/dashboard");
       return res.data;
     },
   });
@@ -36,7 +38,7 @@ const AllLoansDashboard = () => {
     queryKey: ["loan-details", selectedLoanId],
     enabled: !!selectedLoanId,
     queryFn: async () => {
-      const res = await axiosInstance.get(`/loans/${selectedLoanId}`);
+      const res = await axiosSecure.get(`/loans/dashboard/${selectedLoanId}`);
       return res.data;
     },
   });
@@ -63,7 +65,7 @@ const AllLoansDashboard = () => {
   };
   // update the form data
   const handleUpdate = (data) => {
-    axiosInstance
+    axiosSecure
       .patch(`/loans/${selectedLoanId}`, data)
       .then((res) => {
         if (res.data.modifiedCount) {
@@ -90,7 +92,7 @@ const AllLoansDashboard = () => {
       confirmButtonText: "Yes, Delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosInstance.delete(`/loans/${id}`).then((res) => {
+        axiosSecure.delete(`/loans/${id}`).then((res) => {
           if (res.data.deletedCount) {
             refetch();
             Swal.fire({
@@ -106,7 +108,7 @@ const AllLoansDashboard = () => {
 
   const handleShowOnHomePage = (e, id) => {
     console.log(e, id);
-    axiosInstance
+    axiosSecure
       .patch(`/popular-loans/${id}`, { isPopular: e })
       .then((res) => {
         if (res.data.modifiedCount) {

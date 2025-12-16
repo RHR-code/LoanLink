@@ -2,17 +2,18 @@ import React, { useRef, useState } from "react";
 import useAxiosInstance from "../../Hooks/useAxiosInstance";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../../components/Loader";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const LoanApplications = () => {
   const [selectedLoanId, setSelectedLoanId] = useState(null);
   const [Status, setStatus] = useState("");
   console.log(Status);
-
+  const axiosSecure = useAxiosSecure();
   const axiosInstance = useAxiosInstance();
   const { data: LoanApplications = [] } = useQuery({
     queryKey: ["all-loan-applications", Status],
     queryFn: async () => {
-      const res = await axiosInstance.get(`/loan-application?Status=${Status}`);
+      const res = await axiosSecure.get(`/loan-application?Status=${Status}`);
       return res.data;
     },
   });
@@ -22,9 +23,7 @@ const LoanApplications = () => {
     queryKey: ["loan-application", selectedLoanId],
     enabled: !!selectedLoanId,
     queryFn: async () => {
-      const res = await axiosInstance.get(
-        `/loan-application/${selectedLoanId}`
-      );
+      const res = await axiosSecure.get(`/loan-application/${selectedLoanId}`);
       return res.data;
     },
   });
