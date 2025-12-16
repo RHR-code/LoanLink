@@ -126,6 +126,17 @@ const DashboardLayout = () => {
                 <span className="is-drawer-close:hidden">Add Loan</span>
               </Link>
             </li>
+            <li>
+              <Link
+                to="/dashboard/manage-loans"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Manage Loans"
+              >
+                {/* Loans icon */}
+                <RiMoneyDollarCircleLine />
+                <span className="is-drawer-close:hidden">Manage Loans</span>
+              </Link>
+            </li>
             {/* Setting */}
             <li>
               <button

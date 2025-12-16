@@ -35,6 +35,7 @@ const AddLoan = () => {
       data.Date = new Date();
       data.updatedAt = new Date();
       data.createdBy = user?.displayName;
+      data.email = user?.email;
       axiosInstance
         .post("/loans", data)
         .then((res) => {
