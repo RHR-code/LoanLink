@@ -18,7 +18,8 @@ import AllLoansDashboard from "../DashboardLayout/AdminPages/AllLoansDashboard";
 import LoanApplications from "../DashboardLayout/AdminPages/LoanApplications";
 import AdminRoute from "./AdminRoute";
 import AddLoan from "../DashboardLayout/ManagerPages/AddLoan";
-import ManageLoans from "../DashboardLayout/DashboardLayout/ManageLoans";
+import ManageLoans from "../DashboardLayout/ManagerPages/ManageLoans";
+import PendingLoans from "../DashboardLayout/ManagerPages/PendingLoans";
 
 const router = createBrowserRouter(
   createRoutesFromElements([
@@ -67,6 +68,7 @@ const router = createBrowserRouter(
       {/* Routes For Manager */}
       <Route path="/dashboard/add-loan" element={<AddLoan />} />
       <Route path="/dashboard/manage-loans" element={<ManageLoans />} />
+      <Route path="/dashboard/pending-loans" element={<PendingLoans />} />
     </Route>,
   ])
 );

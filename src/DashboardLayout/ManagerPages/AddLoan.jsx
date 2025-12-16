@@ -4,6 +4,7 @@ import useAxiosInstance from "../../Hooks/useAxiosInstance";
 import axios from "axios";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const AddLoan = () => {
   const { user } = useAuth();
@@ -16,6 +17,7 @@ const AddLoan = () => {
   } = useForm();
 
   const axiosInstance = useAxiosInstance();
+  // const axiosSecure = useAxiosSecure();
   const handleAddLoan = (data) => {
     setLoading(true);
     const loanImage = data.loan_image[0];
