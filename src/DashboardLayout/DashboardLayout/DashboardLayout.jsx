@@ -114,6 +114,18 @@ const DashboardLayout = () => {
               </>
             )}
 
+            {/* MANAGER ONLY PAGES */}
+            <li>
+              <Link
+                to="/dashboard/add-loan"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Add Loan"
+              >
+                {/* Loans icon */}
+                <RiMoneyDollarCircleLine />
+                <span className="is-drawer-close:hidden">Add Loan</span>
+              </Link>
+            </li>
             {/* Setting */}
             <li>
               <button
