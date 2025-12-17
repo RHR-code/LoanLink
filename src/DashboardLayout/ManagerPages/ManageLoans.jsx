@@ -27,7 +27,7 @@ const ManageLoans = () => {
   } = useQuery({
     queryKey: ["all-loans", user?.email],
     queryFn: async () => {
-      const res = await axiosInstance.get(
+      const res = await axiosSecure.get(
         `/loans/dashboard/manager?email=${user?.email}`
       );
       return res.data;

@@ -4,17 +4,19 @@ import { useQuery } from "@tanstack/react-query";
 import Loader from "../../components/Loader";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import useAuth from "../../Hooks/useAuth";
 
-const PendingLoans = () => {
+const ApprovedLoans = () => {
   const [selectedLoanId, setSelectedLoanId] = useState(null);
   const [Status, setStatus] = useState("");
 
   const axiosSecure = useAxiosSecure();
+  const axiosInstance = useAxiosInstance();
   const { data: LoanApplications = [], refetch } = useQuery({
     queryKey: ["all-loan-applications", Status],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `/loan-application/manager?Status=Pending`
+        `/loan-application/manager?Status=Approved`
       );
       return res.data;
     },
@@ -38,7 +40,7 @@ const PendingLoans = () => {
   };
 
   const handleStatus = (id, Status) => {
-    axiosSecure
+    axiosInstance
       .patch(`/loan-application/manager/${id}`, { Status: Status })
       .then((res) => {
         console.log(res.data);
@@ -51,18 +53,6 @@ const PendingLoans = () => {
 
   return (
     <div>
-      <div className="flex justify-end py-5">
-        <select
-          onChange={(e) => setStatus(e.target.value)}
-          defaultValue="Pick a color"
-          className="select"
-        >
-          <option value="">Filter By Status</option>
-          <option value="Pending">Pending</option>
-          <option value="Approved">Approved</option>
-          <option value="Rejected">Rejected</option>
-        </select>
-      </div>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
@@ -71,7 +61,7 @@ const PendingLoans = () => {
               <th>Loan ID</th>
               <th>Name</th>
               <th>Email</th>
-              <th>Category</th>
+              <th>Approved Date</th>
               <th>Amount</th>
               <th>Status</th>
               <th>Actions</th>
@@ -88,22 +78,10 @@ const PendingLoans = () => {
                 <td>
                   <div>{loanApps.email}</div>
                 </td>
-                <td>{loanApps.loanTittle}</td>
+                <td>{loanApps.updatedAt}</td>
                 <td>{loanApps.loanAmount}</td>
                 <td className="text-center">{loanApps.Status}</td>
                 <th>
-                  <button
-                    onClick={() => handleStatus(loanApps._id, "Approved")}
-                    className="btn bg-green-500 btn-xs"
-                  >
-                    Approve
-                  </button>
-                  <button
-                    onClick={() => handleStatus(loanApps._id, "Rejected")}
-                    className="btn bg-red-500 btn-xs"
-                  >
-                    Reject
-                  </button>
                   <button
                     onClick={() => handleView(loanApps._id)}
                     className="btn bg-blue-300 btn-xs"
@@ -278,4 +256,4 @@ const PendingLoans = () => {
   );
 };
 
-export default PendingLoans;
+export default ApprovedLoans;

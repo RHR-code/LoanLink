@@ -13,7 +13,6 @@ import { auth } from "../Firebase/firebase.config";
 
 const AuthProvider = ({ children }) => {
   const googleProvider = new GoogleAuthProvider();
-
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   //  user registration
@@ -45,6 +44,8 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      console.log(currentUser);
+
       setLoading(false);
     });
     return () => {

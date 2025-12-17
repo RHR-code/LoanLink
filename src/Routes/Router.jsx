@@ -20,6 +20,8 @@ import AdminRoute from "./AdminRoute";
 import AddLoan from "../DashboardLayout/ManagerPages/AddLoan";
 import ManageLoans from "../DashboardLayout/ManagerPages/ManageLoans";
 import PendingLoans from "../DashboardLayout/ManagerPages/PendingLoans";
+import ApprovedLoans from "../DashboardLayout/ManagerPages/ApprovedLoans";
+import ManagerProfile from "../DashboardLayout/AdminPages/ManagerProfile";
 
 const router = createBrowserRouter(
   createRoutesFromElements([
@@ -69,6 +71,8 @@ const router = createBrowserRouter(
       <Route path="/dashboard/add-loan" element={<AddLoan />} />
       <Route path="/dashboard/manage-loans" element={<ManageLoans />} />
       <Route path="/dashboard/pending-loans" element={<PendingLoans />} />
+      <Route path="/dashboard/approved-loans" element={<ApprovedLoans />} />
+      <Route path="/dashboard/manager-profile" element={<ManagerProfile />} />
     </Route>,
   ])
 );

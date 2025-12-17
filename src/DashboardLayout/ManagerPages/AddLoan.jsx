@@ -17,7 +17,7 @@ const AddLoan = () => {
   } = useForm();
 
   const axiosInstance = useAxiosInstance();
-  // const axiosSecure = useAxiosSecure();
+  const axiosSecure = useAxiosSecure();
   const handleAddLoan = (data) => {
     setLoading(true);
     const loanImage = data.loan_image[0];
@@ -38,7 +38,7 @@ const AddLoan = () => {
       data.updatedAt = new Date();
       data.createdBy = user?.displayName;
       data.email = user?.email;
-      axiosInstance
+      axiosSecure
         .post("/loans", data)
         .then((res) => {
           setLoading(false);
