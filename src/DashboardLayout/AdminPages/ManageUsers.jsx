@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useAxiosInstance from "../../Hooks/useAxiosInstance";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
@@ -7,14 +7,19 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 const ManageUsers = () => {
   // const axiosInstance = useAxiosInstance();
   const axiosSecure = useAxiosSecure();
+
+  const [role, setRole] = useState("");
+  const [searchText, setSearchText] = useState("");
   const {
     data: users = [],
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["users"],
+    queryKey: ["users", role, searchText],
     queryFn: async () => {
-      const res = await axiosSecure.get("/users");
+      const res = await axiosSecure.get(
+        `/users?role=${role}&searchText=${searchText}`
+      );
       return res.data;
     },
   });
@@ -44,6 +49,24 @@ const ManageUsers = () => {
   };
   return (
     <div>
+      <div className="flex justify-between p-5">
+        <input
+          onChange={(e) => setSearchText(e.target.value)}
+          type="search"
+          className="input"
+          placeholder="Search By Name"
+        />
+        <select
+          onChange={(e) => setRole(e.target.value)}
+          defaultValue="Pick a Role"
+          className="select"
+        >
+          <option value="">Filter By Role</option>
+          <option value="Admin">Admin</option>
+          <option value="Manager">Manager</option>
+          <option value="User">User</option>
+        </select>
+      </div>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

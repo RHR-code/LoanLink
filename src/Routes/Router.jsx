@@ -26,6 +26,8 @@ import ManagerRoute from "./ManagerRoute";
 import MyLoans from "../DashboardLayout/UserPages/MyLoans";
 import PaymentSuccess from "../DashboardLayout/Payment/PaymentSuccess";
 import MyProfile from "../DashboardLayout/UserPages/MyProfile";
+import About from "../MainLayout/Pages/About";
+import Contact from "../MainLayout/Pages/Contact";
 
 const router = createBrowserRouter(
   createRoutesFromElements([
@@ -41,6 +43,8 @@ const router = createBrowserRouter(
         }
       />
       <Route path="/apply-loan" element={<ApplyForLoan />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/contact" element={<Contact />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
     </Route>,

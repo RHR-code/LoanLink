@@ -11,15 +11,17 @@ import Loader from "../../components/Loader";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 const MyProfile = ({ manager }) => {
   const axiosSecure = useAxiosSecure();
   const { user, loading, userLogout } = useAuth();
-
+  const navigate = useNavigate();
   const handleSignout = () => {
     userLogout()
       .then(() => {
         toast.success("Successfully Signed Out!");
+        navigate("/");
       })
       .catch((error) => {
         console.log(error.message);
