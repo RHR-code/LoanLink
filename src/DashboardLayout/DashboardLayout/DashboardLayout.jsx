@@ -3,7 +3,14 @@ import Logo from "../../components/Logo";
 import logoImg from "../../assets/investment.png";
 import { Link, Outlet } from "react-router";
 import { HiUsers } from "react-icons/hi2";
-import { RiMoneyDollarCircleLine } from "react-icons/ri";
+import {
+  RiAddCircleLine,
+  RiCheckboxCircleLine,
+  RiMoneyDollarCircleLine,
+  RiSettings3Line,
+  RiTimeLine,
+  RiUserStarLine,
+} from "react-icons/ri";
 import { RiFileList3Line } from "react-icons/ri";
 import useRole from "../../Hooks/useRole";
 
@@ -115,61 +122,93 @@ const DashboardLayout = () => {
             )}
 
             {/* MANAGER ONLY PAGES */}
+            {userRole === "Manager" && (
+              <>
+                <li>
+                  <Link
+                    to="/dashboard/add-loan"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Add Loan"
+                  >
+                    <RiAddCircleLine />
+                    <span className="is-drawer-close:hidden">Add Loan</span>
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/dashboard/manage-loans"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Manage Loans"
+                  >
+                    <RiSettings3Line />
+                    <span className="is-drawer-close:hidden">Manage Loans</span>
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/dashboard/pending-loans"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Pending Loans"
+                  >
+                    <RiTimeLine />
+                    <span className="is-drawer-close:hidden">
+                      Pending Loans
+                    </span>
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/dashboard/approved-loans"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Approved Loans"
+                  >
+                    <RiCheckboxCircleLine />
+                    <span className="is-drawer-close:hidden">
+                      Approved Loans
+                    </span>
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/dashboard/manager-profile"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Manager Profile"
+                  >
+                    <RiUserStarLine />
+                    <span className="is-drawer-close:hidden">
+                      Manager Profile
+                    </span>
+                  </Link>
+                </li>
+              </>
+            )}
+
+            {/* User Only Pages */}
             <li>
               <Link
-                to="/dashboard/add-loan"
+                to="/dashboard/my-loans"
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Add Loan"
+                data-tip="My Loans"
               >
-                {/* Loans icon */}
-                <RiMoneyDollarCircleLine />
-                <span className="is-drawer-close:hidden">Add Loan</span>
+                <RiAddCircleLine />
+                <span className="is-drawer-close:hidden">My Loans</span>
               </Link>
             </li>
             <li>
               <Link
-                to="/dashboard/manage-loans"
+                to="/dashboard/my-profile"
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Manage Loans"
+                data-tip="My Profile"
               >
-                {/* Loans icon */}
-                <RiMoneyDollarCircleLine />
-                <span className="is-drawer-close:hidden">Manage Loans</span>
+                <RiAddCircleLine />
+                <span className="is-drawer-close:hidden">My Profile</span>
               </Link>
             </li>
-            <li>
-              <Link
-                to="/dashboard/pending-loans"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Pending Loans"
-              >
-                {/* Loans icon */}
-                <RiMoneyDollarCircleLine />
-                <span className="is-drawer-close:hidden">Pending Loans</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/dashboard/approved-loans"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Approved Loans"
-              >
-                {/* Loans icon */}
-                <RiMoneyDollarCircleLine />
-                <span className="is-drawer-close:hidden">Approved Loans</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/dashboard/manager-profile"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Manager Profile"
-              >
-                {/* Loans icon */}
-                <RiMoneyDollarCircleLine />
-                <span className="is-drawer-close:hidden">Manager Profile</span>
-              </Link>
-            </li>
+
             {/* Setting */}
             <li>
               <button

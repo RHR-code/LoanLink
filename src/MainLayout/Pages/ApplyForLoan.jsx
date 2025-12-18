@@ -4,6 +4,7 @@ import useAuth from "../../Hooks/useAuth";
 import { useLocation } from "react-router";
 import useAxiosInstance from "../../Hooks/useAxiosInstance";
 import { useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 const ApplyForLoan = () => {
   const { user } = useAuth();
@@ -22,6 +23,7 @@ const ApplyForLoan = () => {
     handleSubmit,
     setValue,
     control,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -55,7 +57,8 @@ const ApplyForLoan = () => {
     axiosInstance
       .post("/loan-application", data)
       .then((res) => {
-        console.log(res.data);
+        toast.success("Successfully Applied For Loan");
+        reset();
       })
       .catch((error) => {
         console.log(error);

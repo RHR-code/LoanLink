@@ -22,6 +22,10 @@ import ManageLoans from "../DashboardLayout/ManagerPages/ManageLoans";
 import PendingLoans from "../DashboardLayout/ManagerPages/PendingLoans";
 import ApprovedLoans from "../DashboardLayout/ManagerPages/ApprovedLoans";
 import ManagerProfile from "../DashboardLayout/AdminPages/ManagerProfile";
+import ManagerRoute from "./ManagerRoute";
+import MyLoans from "../DashboardLayout/UserPages/MyLoans";
+import PaymentSuccess from "../DashboardLayout/Payment/PaymentSuccess";
+import MyProfile from "../DashboardLayout/UserPages/MyProfile";
 
 const router = createBrowserRouter(
   createRoutesFromElements([
@@ -68,11 +72,52 @@ const router = createBrowserRouter(
         }
       />
       {/* Routes For Manager */}
-      <Route path="/dashboard/add-loan" element={<AddLoan />} />
-      <Route path="/dashboard/manage-loans" element={<ManageLoans />} />
-      <Route path="/dashboard/pending-loans" element={<PendingLoans />} />
-      <Route path="/dashboard/approved-loans" element={<ApprovedLoans />} />
-      <Route path="/dashboard/manager-profile" element={<ManagerProfile />} />
+      <Route
+        path="/dashboard/add-loan"
+        element={
+          <ManagerRoute>
+            <AddLoan />
+          </ManagerRoute>
+        }
+      />
+      <Route
+        path="/dashboard/manage-loans"
+        element={
+          <ManagerRoute>
+            <ManageLoans />
+          </ManagerRoute>
+        }
+      />
+      <Route
+        path="/dashboard/pending-loans"
+        element={
+          <ManagerRoute>
+            <PendingLoans />
+          </ManagerRoute>
+        }
+      />
+      <Route
+        path="/dashboard/approved-loans"
+        element={
+          <ManagerRoute>
+            <ApprovedLoans />
+          </ManagerRoute>
+        }
+      />
+      <Route
+        path="/dashboard/manager-profile"
+        element={
+          <ManagerRoute>
+            <ManagerProfile />
+          </ManagerRoute>
+        }
+      />
+      {/* Routes For Users */}
+      <Route path="/dashboard/my-loans" element={<MyLoans />} />
+      <Route path="/dashboard/my-profile" element={<MyProfile />} />
+
+      {/* success and cancel */}
+      <Route path="/dashboard/payment-success" Component={PaymentSuccess} />
     </Route>,
   ])
 );
