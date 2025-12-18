@@ -9,7 +9,11 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const AllLoansDashboard = () => {
   const [selectedLoanId, setSelectedLoanId] = useState(null);
-  const [onHomePage, setOnHomePage] = useState(false);
+  const [allLoans, setAllLoans] = useState(0);
+  const [loansCount, setLoansCount] = useState(0);
+  const [totalPage, setTotalPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
+  const limit = 6;
   const {
     register,
     handleSubmit,
@@ -26,10 +30,19 @@ const AllLoansDashboard = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["all-loans"],
+    queryKey: ["all-loans", currentPage],
     queryFn: async () => {
-      const res = await axiosSecure.get("/loans/dashboard");
-      return res.data;
+      const res = await axiosSecure.get(
+        `/loans/dashboard?limit=${limit}&skip=${currentPage * limit}`
+      );
+      console.log(res.data);
+
+      setAllLoans(res.data.result.length);
+      const page = Math.ceil(res.data.total / limit);
+      setTotalPage(page);
+      console.log(page);
+      setLoansCount(res.data.total);
+      return res.data.result;
     },
   });
 
@@ -129,6 +142,7 @@ const AllLoansDashboard = () => {
 
   return (
     <div>
+      <h1 className="text-2xl font-bold p-5 "> All Loans: {loansCount}</h1>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
@@ -197,7 +211,16 @@ const AllLoansDashboard = () => {
           </tbody>
         </table>
       </div>
-
+      <div className="flex items-center justify-center my-5">
+        {[...Array(totalPage).keys()].map((i) => (
+          <button
+            onClick={() => setCurrentPage(i)}
+            className={`btn mx-2 ${i === currentPage && "btn-primary"}`}
+          >
+            {i}
+          </button>
+        ))}
+      </div>
       {/* modal */}
       <dialog
         id="my_modal_5"
