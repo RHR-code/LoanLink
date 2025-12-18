@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
-
+import { motion } from "framer-motion";
 const LoanCard = ({ loan }) => {
   const {
     category,
@@ -12,7 +12,15 @@ const LoanCard = ({ loan }) => {
     _id,
   } = loan;
   return (
-    <div className="card bg-base-200 shadow-sm">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      className="card bg-base-200 shadow-sm"
+    >
       <figure>
         <img
           className="h-[250px] w-full object-cover"
@@ -38,7 +46,7 @@ const LoanCard = ({ loan }) => {
           View Details
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

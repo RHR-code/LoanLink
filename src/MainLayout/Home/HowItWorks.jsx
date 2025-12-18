@@ -2,6 +2,7 @@ import React from "react";
 import Img1 from "../../assets/loan-choose.jpg";
 import Img2 from "../../assets/loan-form.jpg";
 import Img3 from "../../assets/loan-approve.jpg";
+import { motion } from "framer-motion";
 const HowItWorks = () => {
   const Infos = [
     {
@@ -28,7 +29,13 @@ const HowItWorks = () => {
   ];
 
   return (
-    <div className="mt-24 ">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="mt-24 "
+    >
       <h1 className="text-3xl md:text-5xl font-bold text-center pb-10 text-primary">
         How It Works
       </h1>
@@ -54,7 +61,7 @@ const HowItWorks = () => {
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

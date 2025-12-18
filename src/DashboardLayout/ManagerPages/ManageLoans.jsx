@@ -13,6 +13,7 @@ const ManageLoans = () => {
   const axiosInstance = useAxiosInstance();
   const axiosSecure = useAxiosSecure();
   const [selectedLoanId, setSelectedLoanId] = useState(null);
+  const [searchText, setSearchText] = useState("");
   const {
     register,
     handleSubmit,
@@ -25,10 +26,10 @@ const ManageLoans = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["all-loans", user?.email],
+    queryKey: ["all-loans", searchText, user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `/loans/dashboard/manager?email=${user?.email}`
+        `/loans/dashboard/manager?email=${user?.email}&searchText=${searchText}`
       );
       return res.data;
     },
@@ -109,7 +110,15 @@ const ManageLoans = () => {
 
   return (
     <div>
-      this is manage loans: {loans.length}
+      <h2 className="text-2xl font-bold px-5">Manage Loans: {loans.length}</h2>
+      <div className="p-5">
+        <input
+          onChange={(e) => setSearchText(e.target.value)}
+          type="search"
+          className="input"
+          placeholder="Search By Name"
+        />
+      </div>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

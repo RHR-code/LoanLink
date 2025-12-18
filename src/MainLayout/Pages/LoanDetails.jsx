@@ -3,9 +3,13 @@ import useAxiosInstance from "../../Hooks/useAxiosInstance";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router";
 import Loader from "../../components/Loader";
+import useRole from "../../Hooks/useRole";
+import toast from "react-hot-toast";
 
 const LoanDetails = () => {
   const axiosInstance = useAxiosInstance();
+  const { userRole } = useRole();
+
   const { id } = useParams();
   const { data: loan = {}, isLoading } = useQuery({
     queryKey: ["loan-details", id],
@@ -46,16 +50,25 @@ const LoanDetails = () => {
             ))}
           </div>
           <div className="card-actions justify-end">
-            <Link
-              state={{
-                title: loan.loan_title,
-                interest_rate: loan.interest_rate,
-              }}
-              to="/apply-loan"
-              className="btn btn-primary "
-            >
-              Apply Now
-            </Link>
+            {userRole === "User" ? (
+              <Link
+                state={{
+                  title: loan.loan_title,
+                  interest_rate: loan.interest_rate,
+                }}
+                to="/apply-loan"
+                className="btn btn-primary "
+              >
+                Apply Now
+              </Link>
+            ) : (
+              <button
+                onClick={() => toast.error("You're Not A User")}
+                className="btn btn-primary"
+              >
+                Apply Now
+              </button>
+            )}
           </div>
         </div>
       </div>

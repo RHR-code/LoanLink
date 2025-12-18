@@ -2,9 +2,15 @@ import React from "react";
 import { GoArrowUpRight } from "react-icons/go";
 import bannerImg from "../../assets/banner-img.jpg";
 import { Link } from "react-router";
+import { motion } from "framer-motion";
 const Banner = () => {
   return (
-    <div className="flex flex-col-reverse gap-10 md:flex-row justify-between items-center bg-base-200 md:h-[500px] p-5 md:px-10">
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="flex flex-col-reverse gap-10 md:flex-row justify-between items-center bg-base-200 md:h-[500px] p-5 md:px-10"
+    >
       <div className="space-y-5 md:flex-1">
         <h3 className="text-lg lg:text-2xl font-semibold ">
           Easily Find the Right Loan Quickly
@@ -27,7 +33,7 @@ const Banner = () => {
       <div className="md:flex-1 ">
         <img src={bannerImg} alt="" />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

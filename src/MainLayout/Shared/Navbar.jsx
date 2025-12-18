@@ -44,36 +44,6 @@ const Navbar = () => {
             </li>
           </>
         )}
-        {user ? (
-          <>
-            <div className="flex items-center">
-              <li onClick={handleSignout}>
-                <button className="md:btn btn-primary btn-outline">
-                  Logout
-                </button>
-              </li>
-              <li>
-                <img className="w-16" src={user?.photoURL} alt="" />
-              </li>
-            </div>
-          </>
-        ) : (
-          <>
-            <li>
-              <NavLink className="md:btn btn-primary btn-outline" to="/login">
-                Login
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className="md:btn btn-primary btn-outline md:mx-5"
-                to="/Register"
-              >
-                Register
-              </NavLink>
-            </li>
-          </>
-        )}
       </div>
     </>
   );
@@ -114,7 +84,46 @@ const Navbar = () => {
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">{Links}</ul>
           </div>
-          <Toggle />
+          <div className="flex items-center gap-4">
+            {user ? (
+              <>
+                <div className="flex items-center gap-4">
+                  <div onClick={handleSignout}>
+                    <button className="md:btn btn-primary btn-outline">
+                      Logout
+                    </button>
+                  </div>
+                  <div>
+                    <img
+                      className="w-10 rounded-full"
+                      src={user?.photoURL}
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <div>
+                  <NavLink
+                    className="md:btn btn-primary btn-outline"
+                    to="/login"
+                  >
+                    Login
+                  </NavLink>
+                </div>
+                <div>
+                  <NavLink
+                    className="md:btn btn-primary btn-outline "
+                    to="/Register"
+                  >
+                    Register
+                  </NavLink>
+                </div>
+              </>
+            )}
+            <Toggle />
+          </div>
         </div>
       </div>
     </div>

@@ -7,3 +7,7 @@
   --color-secondary: #ff9f1c;
   --color-base-200: #ede5da;
 }
+
+a.active {
+  @apply text-primary;
+}

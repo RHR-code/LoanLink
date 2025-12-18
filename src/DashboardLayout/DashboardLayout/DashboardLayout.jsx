@@ -188,26 +188,30 @@ const DashboardLayout = () => {
             )}
 
             {/* User Only Pages */}
-            <li>
-              <Link
-                to="/dashboard/my-loans"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="My Loans"
-              >
-                <RiAddCircleLine />
-                <span className="is-drawer-close:hidden">My Loans</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/dashboard/my-profile"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="My Profile"
-              >
-                <RiAddCircleLine />
-                <span className="is-drawer-close:hidden">My Profile</span>
-              </Link>
-            </li>
+            {userRole === "User" && (
+              <>
+                <li>
+                  <Link
+                    to="/dashboard/my-loans"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="My Loans"
+                  >
+                    <RiAddCircleLine />
+                    <span className="is-drawer-close:hidden">My Loans</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/dashboard/my-profile"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="My Profile"
+                  >
+                    <RiAddCircleLine />
+                    <span className="is-drawer-close:hidden">My Profile</span>
+                  </Link>
+                </li>
+              </>
+            )}
 
             {/* Setting */}
             <li>

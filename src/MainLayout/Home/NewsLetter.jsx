@@ -1,10 +1,17 @@
 import React from "react";
 import letterImg from "../../assets/newsletter.jpg";
+import { motion } from "framer-motion";
 const NewsLetter = () => {
   return (
-    <div className="flex flex-col md:flex-row items-center mt-24 px-5 md:px-10">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="flex flex-col md:flex-row items-center mt-24 px-5 gap-3 md:px-10"
+    >
       <div className="flex-1">
-        <img src={letterImg} alt="" />
+        <img src={letterImg} className="rounded-2xl" alt="" />
       </div>
       <div className="flex-1 space-y-5">
         <h1 className="text-3xl md:text-5xl font-black max-w-xl  ">
@@ -25,7 +32,7 @@ const NewsLetter = () => {
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
