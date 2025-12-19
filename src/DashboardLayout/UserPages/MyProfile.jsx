@@ -60,8 +60,8 @@ const MyProfile = ({ manager }) => {
 
         {/* Info */}
         <div className="flex-1">
-          <h2 className="text-2xl font-bold flex items-center gap-2">
-            <FaUserTie className="text-blue-600" />
+          <h2 className="text-2xl text-primary font-bold flex items-center gap-2">
+            <FaUserTie className="text-primary" />
             {user.displayName || "User Name"}
           </h2>
 
@@ -74,10 +74,10 @@ const MyProfile = ({ manager }) => {
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
         <div className="bg-blue-50 rounded-2xl p-5 shadow flex items-center gap-4">
-          <FaPlusCircle className="text-3xl text-blue-600" />
+          <FaPlusCircle className="text-3xl text-primary" />
           <div>
             <p className="text-sm text-gray-600">Loans Added</p>
-            <p className="text-2xl font-bold">{loans.length}</p>
+            <p className="text-2xl text-primary font-bold">{loans.length}</p>
           </div>
         </div>
         <div className="bg-red-50 rounded-2xl p-5 shadow flex items-center justify-center gap-4">

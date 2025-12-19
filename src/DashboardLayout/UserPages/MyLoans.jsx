@@ -25,12 +25,6 @@ const MyLoans = () => {
   const axiosInstance = useAxiosInstance();
   const axiosSecure = useAxiosSecure();
   const [selectedLoanId, setSelectedLoanId] = useState(null);
-  //   const {
-  //     register,
-  //     handleSubmit,
-  //     reset,
-  //     formState: { errors },
-  //   } = useForm();
 
   const {
     data: loans = [],

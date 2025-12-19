@@ -53,6 +53,9 @@ const ApprovedLoans = () => {
 
   return (
     <div>
+      <h2 className="text-2xl font-bold p-5">
+        Approved Loans: {LoanApplications.length}
+      </h2>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

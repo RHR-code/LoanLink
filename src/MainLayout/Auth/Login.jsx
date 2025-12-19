@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import Loader from "../../components/Loader";
 import SocialLogin from "./SocialLogin";
+import { FaEye, FaRegEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const { loading, userLogin } = useAuth();
+  const [showPass, setShowPass] = useState(false);
   const navigate = useNavigate();
   const { state } = useLocation();
 
@@ -28,7 +30,7 @@ const Login = () => {
       });
   };
   return (
-    <div className="max-w-3/4 mx-auto p-10 rounded-2xl my-5 bg-base-200">
+    <div className="mx-5 lg:max-w-3/4 lg:mx-auto p-5 lg:p-10 rounded-2xl my-5 bg-base-200">
       <h1 className="font-extrabold text-[42px] text-primary">Welcome Back</h1>
       <p className="text-base font-medium py-5">Login with LoanLink</p>
       <form onSubmit={handleSubmit(handleLogin)}>
@@ -46,15 +48,23 @@ const Login = () => {
           )}
           {/* password */}
           <label className="label">Password</label>
-          <input
-            type="password"
-            {...register("password", {
-              required: true,
-              minLength: 6,
-            })}
-            className="input w-full"
-            placeholder="Password"
-          />
+          <div className="relative">
+            <input
+              type={showPass ? "text" : "password"}
+              {...register("password", {
+                required: true,
+                minLength: 6,
+              })}
+              className="input w-full"
+              placeholder="Password"
+            />
+            <div
+              onClick={() => setShowPass(!showPass)}
+              className="absolute right-3 top-2.5 z-10"
+            >
+              {showPass ? <FaRegEyeSlash size={20} /> : <FaEye size={20} />}
+            </div>
+          </div>
           {errors.password?.type === "required" && (
             <p className="text-red-500">Password is required</p>
           )}

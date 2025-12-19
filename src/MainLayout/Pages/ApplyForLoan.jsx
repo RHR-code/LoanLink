@@ -5,11 +5,15 @@ import { useLocation } from "react-router";
 import useAxiosInstance from "../../Hooks/useAxiosInstance";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import useRole from "../../Hooks/useRole";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const ApplyForLoan = () => {
   const { user } = useAuth();
   const { state } = useLocation();
   const axiosInstance = useAxiosInstance();
+  const axiosSecure = useAxiosSecure();
+  const { userRole } = useRole();
   const { data: loans = [], isLoading } = useQuery({
     queryKey: ["all-loans"],
     queryFn: async () => {
@@ -53,8 +57,8 @@ const ApplyForLoan = () => {
   }, [user, watchLoanTittle, state, setValue]);
 
   const handleApplyLoan = (data) => {
-    console.log(data);
-    axiosInstance
+    data.Date = new Date();
+    axiosSecure
       .post("/loan-application", data)
       .then((res) => {
         toast.success("Successfully Applied For Loan");
@@ -65,17 +69,17 @@ const ApplyForLoan = () => {
       });
   };
   return (
-    <div className="px-10 my-10">
+    <div className=" px-5 lg:px-10 my-10">
       <div>
-        <h1 className="py-5 text-5xl text-secondary font-black ">
+        <h1 className="py-5 text-2xl md:text-5xl text-secondary font-black ">
           Apply For A Loan
         </h1>
-        <h2 className="text-2xl font-bold text-secondary">
+        <h2 className="text-xl md:text-2xl font-bold text-secondary">
           Enter your Personal details
         </h2>
         <form onSubmit={handleSubmit(handleApplyLoan)} className="">
           {/* personal details */}
-          <div className="grid gap-12 grid-cols-1 md:grid-cols-2 space-y-5">
+          <div className="grid lg:gap-12 grid-cols-1 md:grid-cols-2 space-y-5">
             <fieldset className="fieldset">
               <label className="label">First Name</label>
               <input
@@ -243,8 +247,11 @@ const ApplyForLoan = () => {
             placeholder="Extra Notes"
             rows="5"
           ></textarea>
-          <button className="btn btn-primary text-black w-2xs my-10">
-            Proceed to Confirm Booking
+          <button
+            disabled={userRole === "User" ? false : true}
+            className="btn btn-primary text-black w-2xs my-10"
+          >
+            Apply For A Loan
           </button>
         </form>
       </div>

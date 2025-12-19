@@ -36,6 +36,9 @@ const LoanApplications = () => {
   };
   return (
     <div>
+      <h2 className="text-2xl font-bold p-5">
+        Loan Applications: {LoanApplications.length}
+      </h2>
       <div className="flex justify-end py-5">
         <select
           onChange={(e) => setStatus(e.target.value)}
@@ -58,6 +61,7 @@ const LoanApplications = () => {
               <th>Email</th>
               <th>Category</th>
               <th>Amount</th>
+              <th>FeeStatus</th>
               <th>Status</th>
               <th>Actions</th>
             </tr>
@@ -66,7 +70,7 @@ const LoanApplications = () => {
             {/* row 1 */}
             {LoanApplications.map((loanApps, ind) => (
               <tr key={loanApps._id}>
-                <th>{ind + 1}</th>
+                <th>{loanApps._id}</th>
                 <td>
                   <div>{loanApps.firstName + loanApps.lastName}</div>
                 </td>
@@ -75,6 +79,7 @@ const LoanApplications = () => {
                 </td>
                 <td>{loanApps.loanTittle}</td>
                 <td>{loanApps.loanAmount}</td>
+                <td className="text-center">{loanApps.FeeStatus}</td>
                 <td className="text-center">{loanApps.Status}</td>
                 <th>
                   <button

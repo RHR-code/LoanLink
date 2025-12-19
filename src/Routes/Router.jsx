@@ -28,10 +28,12 @@ import PaymentSuccess from "../DashboardLayout/Payment/PaymentSuccess";
 import MyProfile from "../DashboardLayout/UserPages/MyProfile";
 import About from "../MainLayout/Pages/About";
 import Contact from "../MainLayout/Pages/Contact";
+import PageNotFound from "../components/PageNotFound";
+import PaymentCancelled from "../DashboardLayout/Payment/PaymentCancelled";
 
 const router = createBrowserRouter(
   createRoutesFromElements([
-    <Route path="/" Component={MainLayout}>
+    <Route path="/" errorElement={<PageNotFound />} Component={MainLayout}>
       <Route index={true} Component={Home} />
       <Route path="/all-loans" Component={AllLoans} />
       <Route
@@ -42,14 +44,28 @@ const router = createBrowserRouter(
           </PrivateRoute>
         }
       />
-      <Route path="/apply-loan" element={<ApplyForLoan />} />
+      <Route
+        path="/apply-loan"
+        element={
+          <PrivateRoute>
+            <ApplyForLoan />
+          </PrivateRoute>
+        }
+      />
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
     </Route>,
     // Dashboard Routes
-    <Route path="/dashboard" Component={DashboardLayout}>
+    <Route
+      path="/dashboard"
+      element={
+        <PrivateRoute>
+          <DashboardLayout />
+        </PrivateRoute>
+      }
+    >
       {/* Routes For Admin */}
       <Route
         path="/dashboard/all-loan"
@@ -117,11 +133,26 @@ const router = createBrowserRouter(
         }
       />
       {/* Routes For Users */}
-      <Route path="/dashboard/my-loans" element={<MyLoans />} />
-      <Route path="/dashboard/my-profile" element={<MyProfile />} />
+      <Route
+        path="/dashboard/my-loans"
+        element={
+          <PrivateRoute>
+            <MyLoans />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/dashboard/my-profile"
+        element={
+          <PrivateRoute>
+            <MyProfile />
+          </PrivateRoute>
+        }
+      />
 
       {/* success and cancel */}
       <Route path="/dashboard/payment-success" Component={PaymentSuccess} />
+      <Route path="/dashboard/payment-cancelled" Component={PaymentCancelled} />
     </Route>,
   ])
 );

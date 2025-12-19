@@ -53,13 +53,13 @@ const AddLoan = () => {
   };
   return (
     <div>
-      <div className="mx-20 my-10">
+      <div className="m-5 lg:mx-20 lg:my-10">
         <h1 className=" text-5xl text-secondary font-black ">Add A Loan</h1>
         <h2 className="py-5 text-2xl font-bold text-secondary">
           Enter your Personal details
         </h2>
         <form
-          className="p-10 border-2 border-gray-400 rounded-2xl shadow-2xl"
+          className="p-5 lg:p-10 border-2 border-gray-400 rounded-2xl shadow-2xl"
           onSubmit={handleSubmit(handleAddLoan)}
         >
           {/* personal details */}

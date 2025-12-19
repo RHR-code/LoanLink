@@ -4,7 +4,7 @@ import useAuth from "./useAuth";
 import { useNavigate } from "react-router";
 import toast from "react-hot-toast";
 const instance = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://loan-link-server-seven.vercel.app",
 });
 const useAxiosSecure = () => {
   const { user, userLogout } = useAuth();

@@ -10,10 +10,12 @@ import useAuth from "../../Hooks/useAuth";
 import Loader from "../../components/Loader";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 const ManagerProfile = ({ manager }) => {
   const axiosSecure = useAxiosSecure();
-  const { user, loading } = useAuth();
+  const { user, loading, userLogout } = useAuth();
   //   for added loans
   const { data: loans = [], isLoading } = useQuery({
     queryKey: ["all-loans", user?.email],
@@ -24,9 +26,20 @@ const ManagerProfile = ({ manager }) => {
       return res.data;
     },
   });
+  const navigate = useNavigate();
+  const handleSignout = () => {
+    userLogout()
+      .then(() => {
+        toast.success("Successfully Signed Out!");
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
   // for approved loans
   const { data: approvedApplications = [] } = useQuery({
-    queryKey: ["all-loan-applications"],
+    queryKey: ["all-Approved-applications"],
     queryFn: async () => {
       const res = await axiosSecure.get(
         `/loan-application/manager?Status=Approved`
@@ -36,10 +49,10 @@ const ManagerProfile = ({ manager }) => {
   });
   // for Pending loans
   const { data: pendingLoans = [] } = useQuery({
-    queryKey: ["all-loan-applications"],
+    queryKey: ["all-Pending-applications"],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `/loan-application/manager?Status=Approved`
+        `/loan-application/manager?Status=Pending`
       );
       return res.data;
     },
@@ -88,7 +101,7 @@ const ManagerProfile = ({ manager }) => {
           <FaCheckCircle className="text-3xl text-green-600" />
           <div>
             <p className="text-sm text-gray-600">Approved Loans</p>
-            <p className="text-2xl font-bold">{approvedApplications.length}</p>
+            <p className="text-2xl  font-bold">{approvedApplications.length}</p>
           </div>
         </div>
 
@@ -98,6 +111,11 @@ const ManagerProfile = ({ manager }) => {
             <p className="text-sm text-gray-600">Pending Loans</p>
             <p className="text-2xl font-bold">{pendingLoans.length}</p>
           </div>
+        </div>
+      </div>
+      <div className="bg-red-50 rounded-2xl p-5 shadow flex items-center justify-center gap-4">
+        <div onClick={handleSignout}>
+          <button className="md:btn btn-primary btn-outline">Logout</button>
         </div>
       </div>
     </div>

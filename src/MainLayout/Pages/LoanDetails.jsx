@@ -5,22 +5,24 @@ import { Link, useParams } from "react-router";
 import Loader from "../../components/Loader";
 import useRole from "../../Hooks/useRole";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const LoanDetails = () => {
-  const axiosInstance = useAxiosInstance();
+  // const axiosInstance = useAxiosInstance();
+  const axiosSecure = useAxiosSecure();
   const { userRole } = useRole();
 
   const { id } = useParams();
   const { data: loan = {}, isLoading } = useQuery({
     queryKey: ["loan-details", id],
     queryFn: async () => {
-      const res = await axiosInstance.get(`/loans/${id}`);
+      const res = await axiosSecure.get(`/loans/${id}`);
       return res.data;
     },
   });
   isLoading && <Loader />;
   return (
-    <div className="px-10 my-10">
+    <div className="px-5 lg:px-10 my-10">
       <div className="card lg:card-side bg-base-100 shadow-sm">
         <figure className="flex-1">
           <img src={loan.loan_image} alt="Album" />

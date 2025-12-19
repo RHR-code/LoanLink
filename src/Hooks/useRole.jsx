@@ -7,7 +7,7 @@ const useRole = () => {
   const axiosInstance = useAxiosInstance();
   const { user } = useAuth();
 
-  const { data: userRole = "user", isLoading: roleLoading } = useQuery({
+  const { data: userRole = "User", isLoading: roleLoading } = useQuery({
     queryKey: ["user-role", user?.email],
     enabled: !!user?.email,
     queryFn: async () => {

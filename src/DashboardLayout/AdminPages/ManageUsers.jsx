@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import useAxiosInstance from "../../Hooks/useAxiosInstance";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const ManageUsers = () => {
   // const axiosInstance = useAxiosInstance();
@@ -47,8 +48,31 @@ const ManageUsers = () => {
       }
     });
   };
+  const [suspendId, setSuspendId] = useState(null);
+  const modalRef = useRef();
+  const handleSuspend = (id) => {
+    setSuspendId(id);
+    modalRef.current.showModal();
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axiosSecure.patch(`/users/suspend/${suspendId}`).then((res) => {
+      if (res.data.modifiedCount) {
+        refetch();
+        toast.success("Suspend Feedback Added Successfully");
+        e.target.reset();
+        modalRef.current.close();
+        Swal.fire({
+          title: "Successful!",
+          text: "The User Is Suspended",
+          icon: "success",
+        });
+      }
+    });
+  };
   return (
     <div>
+      <h1 className="text-2xl font-bold p-5 "> All Users: {users.length}</h1>
       <div className="flex justify-between p-5">
         <input
           onChange={(e) => setSearchText(e.target.value)}
@@ -110,13 +134,54 @@ const ManageUsers = () => {
                   >
                     Approve
                   </button>
-                  <button className="btn bg-red-500 btn-xs">Suspend</button>
+                  <button
+                    onClick={() => handleSuspend(user._id)}
+                    className="btn bg-red-500 btn-xs"
+                  >
+                    Suspend
+                  </button>
                 </th>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      {/* modal */}
+      <dialog
+        ref={modalRef}
+        id="my_modal_5"
+        className="modal modal-bottom sm:modal-middle"
+      >
+        <div className="modal-box">
+          <form onSubmit={handleSubmit}>
+            <div className="flex flex-col gap-2">
+              <label>Suspend Reason</label>
+              <input
+                type="text"
+                required
+                className="input"
+                placeholder="Suspend Reason"
+              />
+            </div>
+            <div className=" mt-2 flex flex-col gap-2">
+              <label>Suspend Feedback</label>
+              <textarea
+                className="border-2 border-gray-200 rounded-sm p-2"
+                required
+                rows={5}
+                placeholder="Suspend Feedback"
+              ></textarea>
+            </div>
+            <button className="btn btn-primary mt-5">Submit</button>
+          </form>
+          <div className="modal-action">
+            <form method="dialog">
+              {/* if there is a button in form, it will close the modal */}
+              <button className="btn">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </div>
   );
 };

@@ -13,6 +13,8 @@ import {
 } from "react-icons/ri";
 import { RiFileList3Line } from "react-icons/ri";
 import useRole from "../../Hooks/useRole";
+import Toggle from "../../components/Toggle";
+import Footer from "../../MainLayout/Shared/Footer";
 
 const DashboardLayout = () => {
   const { userRole } = useRole();
@@ -50,11 +52,12 @@ const DashboardLayout = () => {
             </svg>
           </label>
           <div className="px-4"> {userRole} Dashboard</div>
+          <Toggle />
         </nav>
         {/* Page content here */}
         <Outlet />
+        <Footer />
       </div>
-
       <div className="drawer-side is-drawer-close:overflow-visible">
         <label
           htmlFor="my-drawer-4"

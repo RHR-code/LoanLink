@@ -14,7 +14,7 @@ const AllLoans = () => {
     },
   });
   return (
-    <div className="px-10 my-10">
+    <div className="px-5 lg:px-10 my-10">
       <h1 className="text-3xl  md:text-5xl font-bold text-center pb-10 text-primary">
         All Available Loans
       </h1>

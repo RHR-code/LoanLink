@@ -9,6 +9,8 @@ import useRole from "../../Hooks/useRole";
 
 const Navbar = () => {
   const { user, userLogout } = useAuth();
+  const { userRole } = useRole();
+  console.log("Userrole", userRole);
 
   const handleSignout = () => {
     userLogout()
@@ -31,7 +33,17 @@ const Navbar = () => {
         </li>
         {user ? (
           <li>
-            <NavLink to="/dashboard">Dashboard</NavLink>
+            <NavLink
+              to={
+                userRole === "User"
+                  ? "/dashboard/my-loans"
+                  : userRole === "Manager"
+                  ? "/dashboard/add-loan"
+                  : "/dashboard/all-loan"
+              }
+            >
+              Dashboard
+            </NavLink>
           </li>
         ) : (
           <>
@@ -49,7 +61,7 @@ const Navbar = () => {
   );
   return (
     <div>
-      <div className="md:px-10 navbar bg-base-300 shadow-sm">
+      <div className="lg:px-10 navbar bg-base-300 shadow-sm">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

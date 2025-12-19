@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import Confetti from "react-confetti";
 
 const PaymentSuccess = () => {
   const [searchParams] = useSearchParams();
@@ -24,6 +25,8 @@ const PaymentSuccess = () => {
 
   return (
     <div>
+      {paymentInfo.transactionId && <Confetti recycle={false} />}
+
       <h2 className="text-5xl text-secondary">Payment is Successful</h2>
       <h4 className=" text-2xl my-5">
         <strong>Your TransactionId:</strong> {paymentInfo.transactionId}

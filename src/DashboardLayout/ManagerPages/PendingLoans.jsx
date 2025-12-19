@@ -7,11 +7,10 @@ import toast from "react-hot-toast";
 
 const PendingLoans = () => {
   const [selectedLoanId, setSelectedLoanId] = useState(null);
-  const [Status, setStatus] = useState("");
 
   const axiosSecure = useAxiosSecure();
   const { data: LoanApplications = [], refetch } = useQuery({
-    queryKey: ["all-loan-applications", Status],
+    queryKey: ["all-loan-applications"],
     queryFn: async () => {
       const res = await axiosSecure.get(
         `/loan-application/manager?Status=Pending`
@@ -44,25 +43,16 @@ const PendingLoans = () => {
         console.log(res.data);
         if (res.data.modifiedCount) {
           refetch();
-          toast.success("Status Changed");
+          toast.success(`Status Changed To ${Status}`);
         }
       });
   };
 
   return (
     <div>
-      <div className="flex justify-end py-5">
-        <select
-          onChange={(e) => setStatus(e.target.value)}
-          defaultValue="Pick a color"
-          className="select"
-        >
-          <option value="">Filter By Status</option>
-          <option value="Pending">Pending</option>
-          <option value="Approved">Approved</option>
-          <option value="Rejected">Rejected</option>
-        </select>
-      </div>
+      <h2 className="text-2xl font-bold p-5">
+        Pending Loans: {LoanApplications.length}
+      </h2>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
@@ -73,6 +63,7 @@ const PendingLoans = () => {
               <th>Email</th>
               <th>Category</th>
               <th>Amount</th>
+              <th>Date</th>
               <th>Status</th>
               <th>Actions</th>
             </tr>
@@ -90,6 +81,7 @@ const PendingLoans = () => {
                 </td>
                 <td>{loanApps.loanTittle}</td>
                 <td>{loanApps.loanAmount}</td>
+                <td>{loanApps.Date}</td>
                 <td className="text-center">{loanApps.Status}</td>
                 <th>
                   <button
