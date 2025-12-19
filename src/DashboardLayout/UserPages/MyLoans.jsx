@@ -20,7 +20,6 @@ import {
 
 const MyLoans = () => {
   const { user } = useAuth();
-  //   console.log(user.email);
 
   const axiosInstance = useAxiosInstance();
   const axiosSecure = useAxiosSecure();
@@ -89,8 +88,6 @@ const MyLoans = () => {
   };
 
   const handlePayment = async (loan) => {
-    console.log(loan);
-
     const paymentInfo = {
       loanId: loan._id,
       email: loan.email,
@@ -114,7 +111,6 @@ const MyLoans = () => {
     },
   });
 
-  console.log("history", loanHistory);
   const historyRef = useRef();
   const handlePaidHistory = (id) => {
     setTransactionId(id);
@@ -123,7 +119,9 @@ const MyLoans = () => {
 
   return (
     <div>
-      this is manage loans: {loans.length}
+      <h2 className="text-2xl font-bold p-5">
+        this is manage loans: {loans.length}
+      </h2>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

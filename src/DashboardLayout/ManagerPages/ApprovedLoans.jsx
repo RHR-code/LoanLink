@@ -43,7 +43,6 @@ const ApprovedLoans = () => {
     axiosInstance
       .patch(`/loan-application/manager/${id}`, { Status: Status })
       .then((res) => {
-        console.log(res.data);
         if (res.data.modifiedCount) {
           refetch();
           toast.success("Status Changed");

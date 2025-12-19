@@ -12,7 +12,6 @@ const SocialLogin = () => {
   const handleGoogleLogin = () => {
     googleLogin()
       .then((res) => {
-        console.log(res.user);
         // ADDING USER TO DATABASE
         const userInfo = {
           name: res.user.displayName,
@@ -20,7 +19,7 @@ const SocialLogin = () => {
           photoURL: res.user.photoURL,
         };
         AxiosInstance.post("/users", userInfo).then((res) => {
-          console.log("user", res.data);
+          
         });
         toast.success("Successfully LoggedIn!");
         navigate(state ? state : "/");

@@ -18,7 +18,6 @@ import Footer from "../../MainLayout/Shared/Footer";
 
 const DashboardLayout = () => {
   const { userRole } = useRole();
-  console.log(userRole);
   return (
     <div className="drawer lg:drawer-open">
       <input

@@ -10,7 +10,7 @@ import useRole from "../../Hooks/useRole";
 const Navbar = () => {
   const { user, userLogout } = useAuth();
   const { userRole } = useRole();
-  console.log("Userrole", userRole);
+
 
   const handleSignout = () => {
     userLogout()

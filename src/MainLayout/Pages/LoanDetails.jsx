@@ -20,7 +20,9 @@ const LoanDetails = () => {
       return res.data;
     },
   });
-  isLoading && <Loader />;
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <div className="px-5 lg:px-10 my-10">
       <div className="card lg:card-side bg-base-100 shadow-sm">

@@ -19,7 +19,6 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const handleLogin = (data) => {
-    console.log(data);
     userLogin(data.email, data.password)
       .then(() => {
         navigate(state ? state : "/");

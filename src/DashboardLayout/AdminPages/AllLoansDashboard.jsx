@@ -35,12 +35,11 @@ const AllLoansDashboard = () => {
       const res = await axiosSecure.get(
         `/loans/dashboard?limit=${limit}&skip=${currentPage * limit}`
       );
-      console.log(res.data);
+
 
       setAllLoans(res.data.result.length);
       const page = Math.ceil(res.data.total / limit);
       setTotalPage(page);
-      console.log(page);
       setLoansCount(res.data.total);
       return res.data.result;
     },
@@ -120,7 +119,7 @@ const AllLoansDashboard = () => {
   };
 
   const handleShowOnHomePage = (e, id) => {
-    console.log(e, id);
+    
     axiosSecure
       .patch(`/popular-loans/${id}`, { isPopular: e })
       .then((res) => {

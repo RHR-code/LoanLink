@@ -22,11 +22,9 @@ const Register = () => {
   } = useForm();
   const handleRegister = (data) => {
     const profileImage = data.photo[0];
-    console.log(data);
 
     userRegister(data.email, data.password)
       .then((res) => {
-        console.log(res.user);
         const formData = new FormData();
         formData.append("image", profileImage);
         const Image_Api_Url = `https://api.imgbb.com/1/upload?&key=${
@@ -34,7 +32,6 @@ const Register = () => {
         }`;
 
         axios.post(Image_Api_Url, formData).then((res) => {
-          console.log("after image upload", res.data);
           const userProfile = {
             displayName: data.name,
             photoURL: res.data.data.url,
@@ -46,7 +43,12 @@ const Register = () => {
             photoURL: res.data.data.url,
             role: data.role,
           };
-          setUser({ ...res.user, photoURL: res.data.data.url });
+          setUser({
+            ...res.user,
+            photoURL: res.data.data.url,
+            displayName: data.name,
+            email: data.email,
+          });
           AxiosInstance.post("/users", userInfo).then((res) => {
             console.log("user", res.data);
           });

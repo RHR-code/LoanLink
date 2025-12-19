@@ -7,7 +7,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 const LoanApplications = () => {
   const [selectedLoanId, setSelectedLoanId] = useState(null);
   const [Status, setStatus] = useState("");
-  console.log(Status);
+
   const axiosSecure = useAxiosSecure();
   const axiosInstance = useAxiosInstance();
   const { data: LoanApplications = [] } = useQuery({
