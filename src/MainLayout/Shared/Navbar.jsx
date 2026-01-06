@@ -11,7 +11,6 @@ const Navbar = () => {
   const { user, userLogout } = useAuth();
   const { userRole } = useRole();
 
-
   const handleSignout = () => {
     userLogout()
       .then(() => {
@@ -24,39 +23,37 @@ const Navbar = () => {
 
   const Links = (
     <>
-      <div className="flex items-center">
+      <li>
+        <NavLink to="/">Home</NavLink>
+      </li>
+      <li>
+        <NavLink to="/all-loans">All Loans</NavLink>
+      </li>
+      {user ? (
         <li>
-          <NavLink to="/">Home</NavLink>
+          <NavLink
+            to={
+              userRole === "User"
+                ? "/dashboard/my-loans"
+                : userRole === "Manager"
+                ? "/dashboard/add-loan"
+                : "/dashboard/all-loan"
+            }
+          >
+            Dashboard
+          </NavLink>
         </li>
-        <li>
-          <NavLink to="/all-loans">All Loans</NavLink>
-        </li>
-        {user ? (
+      ) : (
+        <>
           <li>
-            <NavLink
-              to={
-                userRole === "User"
-                  ? "/dashboard/my-loans"
-                  : userRole === "Manager"
-                  ? "/dashboard/add-loan"
-                  : "/dashboard/all-loan"
-              }
-            >
-              Dashboard
-            </NavLink>
+            <NavLink to="/about">About Us</NavLink>
           </li>
-        ) : (
-          <>
-            <li>
-              <NavLink to="/about">About Us</NavLink>
-            </li>
 
-            <li>
-              <NavLink to="/contact">Contact Us</NavLink>
-            </li>
-          </>
-        )}
-      </div>
+          <li>
+            <NavLink to="/contact">Contact Us</NavLink>
+          </li>
+        </>
+      )}
     </>
   );
   return (

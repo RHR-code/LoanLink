@@ -57,41 +57,31 @@ const FeedBack = () => {
   ];
 
   const settings = {
+    mobileFirst: true,
     dots: true,
     infinite: true,
-    slidesToShow: 3,
-    slidesToScroll: 1,
     autoplay: true,
-    speed: 2000,
-    autoplaySpeed: 2000,
-    cssEase: "linear",
+    speed: 600,
+    autoplaySpeed: 3000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+
     responsive: [
       {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 2,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 600,
+        breakpoint: 768, // tablet
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 1280, // desktop
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
+          slidesToShow: 3,
         },
       },
     ],
   };
+
   return (
     <div className="mt-24 px-5 md:px-10">
       <h1 className="text-3xl md:text-5xl font-bold text-center pb-10 text-primary">
@@ -100,7 +90,7 @@ const FeedBack = () => {
       <div className="slider-container ">
         <Slider {...settings} className="[&_.slick-slide]:px-5">
           {feedbacks.map((feed) => (
-            <div className="bg-base-200 h-[220px] md:p-10 text-center space-y-2 relative my-10 ">
+            <div className="bg-base-200 p-5 lg:p-10 text-center space-y-2 relative my-10 ">
               <img
                 className=" w-20 absolute z-10 -top-10 left-[50%] translate-x-[-50%]   rounded-full"
                 src={feed.avatar}

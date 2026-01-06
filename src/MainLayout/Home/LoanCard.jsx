@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
+import { FaMoneyBillWave, FaPercentage } from "react-icons/fa";
+
 import { motion } from "framer-motion";
 const LoanCard = ({ loan }) => {
   const {
@@ -23,23 +25,29 @@ const LoanCard = ({ loan }) => {
     >
       <figure>
         <img
-          className="h-[250px] w-full object-cover"
+          className="h-[200px] w-full object-cover"
           src={loan_image}
           alt="Shoes"
         />
       </figure>
-      <div className="card-body space-y-3">
-        <h2 className="card-title">
-          {loan_title}
+      <div className="card-body space-y-1">
+        <div className="card-title ">
+          <h2 className="line-clamp-1">{loan_title}</h2>
           <div className="badge badge-primary">{category}</div>
-        </h2>
-        <p className="line-clamp-2">{description}</p>
+        </div>
+        <p className="line-clamp-1">{description}</p>
         <div className="card-actions justify-between">
           <div className="badge  badge-outline">
-            <strong>Max Loan:</strong> {max_limit}
+            <strong>
+              <FaMoneyBillWave />{" "}
+            </strong>{" "}
+            {max_limit}
           </div>
           <div className="badge  badge-outline">
-            <strong>Interest:</strong> {interest_rate}
+            <strong>
+              <FaPercentage />
+            </strong>{" "}
+            {interest_rate}
           </div>
         </div>
         <Link to={`/loan-details/${_id}`} className="btn btn-primary">
