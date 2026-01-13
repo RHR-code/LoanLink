@@ -120,7 +120,7 @@ const MyLoans = () => {
   return (
     <div>
       <h2 className="text-2xl font-bold p-5">
-        this is manage loans: {loans.length}
+        Manage your loans: {loans.length}
       </h2>
       <div className="overflow-x-auto">
         <table className="table">

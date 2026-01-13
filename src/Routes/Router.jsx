@@ -143,6 +143,14 @@ const router = createBrowserRouter(
         }
       />
       <Route
+        path="apply-loan"
+        element={
+          <PrivateRoute>
+            <ApplyForLoan />
+          </PrivateRoute>
+        }
+      />
+      <Route
         path="/dashboard/my-profile"
         element={
           <PrivateRoute>
