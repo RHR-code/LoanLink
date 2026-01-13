@@ -1,3 +1,79 @@
+# LoanLink
+
+LoanLink is a modern loan management web application that allows users to explore loan options, apply online, and securely complete payments. The platform includes role-based dashboards for users and admins, real-time loan status updates, and a responsive, user-friendly interface built with React, Tailwind CSS, and modern web technologies.
+
+[Live Website Link](https://loanlink-e1e14.web.app/)
+
+### Features
+
+- Browse and view detailed loan options
+
+- Online loan application with real-time status tracking
+
+- Secure payment integration with transaction history
+
+- Admin dashboard to manage loans, applications, and homepage visibility
+
+- Popular loan selection with toggle control
+
+- Responsive UI built with React and Tailwind CSS
+
+- Smooth animations using Framer Motion
+
+- RESTful API with secure data handling
+
+#### Technology Used :
+
+- "@tailwindcss/vite": "^4.1.17",
+- "@tanstack/react-query": "^5.90.12",
+- "axios": "^1.13.2",
+- "firebase": "^12.6.0",
+- "framer-motion": "^12.23.26",
+- "react": "^19.2.0",
+- "react-confetti": "^6.4.0",
+- "react-dom": "^19.2.0",
+- "react-hook-form": "^7.68.0",
+- "react-hot-toast": "^2.6.0",
+- "react-icons": "^5.5.0",
+- "react-loader-spinner": "^8.0.0",
+- "react-router": "^7.10.1",
+- "react-slick": "^0.31.0",
+- "slick-carousel": "^1.8.1",
+- "sweetalert2": "^11.26.4",
+- "tailwindcss": "^4.1.17"
+
+#### Start the development :
+
+```bash
+git clone https://github.com/RHR-code/LoanLink.git
+```
+
+#### Change Directory:
+
+```arduino
+cd LoanLink
+```
+
+#### Start Website:
+
+```arduino
+npm run dev
+```
+
+## 🌈 Screenshots
+
+- **Home Page Banner.**
+
+  ![The-Book-Haven](https://github.com/RHR-code/The-Book-Haven-Client/blob/main/sceenshot/Screenshot%202025-11-19%20153911.png?raw=true)
+
+- **All Book Section.**
+
+  ![The-Book-Haven](https://github.com/RHR-code/The-Book-Haven-Client/blob/main/sceenshot/Screenshot%202025-11-19%20154039.png?raw=true)
+
+---
+
+---
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
