@@ -8,15 +8,15 @@ import toast from "react-hot-toast";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const LoanDetails = () => {
-  // const axiosInstance = useAxiosInstance();
-  const axiosSecure = useAxiosSecure();
+  const axiosInstance = useAxiosInstance();
+  // const axiosSecure = useAxiosSecure();
   const { userRole } = useRole();
 
   const { id } = useParams();
   const { data: loan = {}, isLoading } = useQuery({
     queryKey: ["loan-details", id],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/loans/${id}`);
+      const res = await axiosInstance.get(`/loans/${id}`);
       return res.data;
     },
   });

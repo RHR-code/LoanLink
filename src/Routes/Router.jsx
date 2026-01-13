@@ -39,9 +39,10 @@ const router = createBrowserRouter(
       <Route
         path="/loan-details/:id"
         element={
-          <PrivateRoute>
-            <LoanDetails />
-          </PrivateRoute>
+          // <PrivateRoute>
+          //   <LoanDetails />
+          // </PrivateRoute>
+          <LoanDetails />
         }
       />
       <Route

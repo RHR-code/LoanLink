@@ -15,9 +15,14 @@ const Banner = () => {
         <h3 className="text-lg lg:text-2xl font-semibold ">
           Easily Find the Right Loan Quickly
         </h3>
-        <h1 className="text-4xl  lg:text-6xl font-bold max-w-xl">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl  lg:text-6xl font-bold max-w-xl"
+        >
           Discover the Best Loan Options
-        </h1>
+        </motion.h1>
         <p className="max-w-lg">
           We provide simple, transparent micro-loan solutions designed around
           your personal financial needs, helping you borrow with clarity and
@@ -31,7 +36,13 @@ const Banner = () => {
         </Link>
       </div>
       <div className="md:flex-1 ">
-        <img src={bannerImg} alt="" />
+        <motion.img
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          src={bannerImg}
+          alt=""
+        />
       </div>
     </motion.div>
   );

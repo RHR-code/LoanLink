@@ -29,7 +29,14 @@ const Navbar = () => {
       <li>
         <NavLink to="/all-loans">All Loans</NavLink>
       </li>
-      {user ? (
+      <li>
+        <NavLink to="/about">About Us</NavLink>
+      </li>
+
+      <li>
+        <NavLink to="/contact">Contact Us</NavLink>
+      </li>
+      {user && (
         <li>
           <NavLink
             to={
@@ -43,22 +50,12 @@ const Navbar = () => {
             Dashboard
           </NavLink>
         </li>
-      ) : (
-        <>
-          <li>
-            <NavLink to="/about">About Us</NavLink>
-          </li>
-
-          <li>
-            <NavLink to="/contact">Contact Us</NavLink>
-          </li>
-        </>
       )}
     </>
   );
   return (
-    <div>
-      <div className="lg:px-10 navbar bg-base-300 shadow-sm">
+    <div className="sticky top-0 bg-base-300/80 backdrop-blur-sm z-50">
+      <div className="lg:px-10 navbar  shadow-sm">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
