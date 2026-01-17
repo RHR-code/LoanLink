@@ -17,7 +17,7 @@ const ApplyForLoan = () => {
   const { data: loans = [], isLoading } = useQuery({
     queryKey: ["all-loans"],
     queryFn: async () => {
-      const res = await axiosInstance.get("/loans");
+      const res = await axiosSecure.get("/loans");
       return res.data;
     },
   });

@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import Logo from "../../components/Logo";
 
 import Toggle from "../../components/Toggle";
@@ -99,13 +99,21 @@ const Navbar = () => {
                       Logout
                     </button>
                   </div>
-                  <div>
+                  <Link
+                    to={
+                      userRole === "User"
+                        ? "/dashboard/my-profile"
+                        : userRole === "Admin"
+                        ? "/dashboard/admin-profile"
+                        : "/"
+                    }
+                  >
                     <img
                       className="w-10 rounded-full"
                       src={user?.photoURL}
                       alt=""
                     />
-                  </div>
+                  </Link>
                 </div>
               </>
             ) : (

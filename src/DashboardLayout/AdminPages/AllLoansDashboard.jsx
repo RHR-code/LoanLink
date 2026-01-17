@@ -10,6 +10,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 const AllLoansDashboard = () => {
   const [selectedLoanId, setSelectedLoanId] = useState(null);
   const [allLoans, setAllLoans] = useState(0);
+  
   const [loansCount, setLoansCount] = useState(0);
   const [totalPage, setTotalPage] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../Hooks/useAuth";
@@ -28,11 +28,24 @@ const Login = () => {
         toast.error(error.code);
       });
   };
+
+  const loginRef = useRef();
+
+  const handleDemoUser = () => {
+    loginRef.current.email.value = "rock@gmail.com";
+    loginRef.current.password.value = "123asD";
+    handleLogin({ email: "rock@gmail.com", password: "123asD" });
+  };
+  const handleDemoAdmin = () => {
+    loginRef.current.email.value = "first@gmail.com";
+    loginRef.current.password.value = "123asD";
+    handleLogin({ email: "first@gmail.com", password: "123asD" });
+  };
   return (
     <div className="mx-5 lg:max-w-3/4 lg:mx-auto p-5 lg:p-10 rounded-2xl my-5 bg-base-200">
       <h1 className="font-extrabold text-[42px] text-primary">Welcome Back</h1>
       <p className="text-base font-medium py-5">Login with LoanLink</p>
-      <form onSubmit={handleSubmit(handleLogin)}>
+      <form ref={loginRef} onSubmit={handleSubmit(handleLogin)}>
         <fieldset className="fieldset">
           {/* email */}
           <label className="label">Email</label>
@@ -76,6 +89,20 @@ const Login = () => {
             <a className="link link-hover">Forgot password?</a>
           </div>
           <button className="btn btn-primary mt-4 w-full">Login</button>
+          <button
+            onClick={handleDemoUser}
+            type="button"
+            className="btn btn-primary mt-4 w-full"
+          >
+            Login With Demo User
+          </button>
+          <button
+            onClick={handleDemoAdmin}
+            type="button"
+            className="btn btn-primary mt-4 w-full"
+          >
+            Login With Demo Admin
+          </button>
           <SocialLogin />
           <div>
             <p>

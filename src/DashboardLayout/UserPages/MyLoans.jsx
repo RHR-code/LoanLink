@@ -17,6 +17,7 @@ import {
   FaFileContract,
   FaReceipt,
 } from "react-icons/fa";
+import LoanPieChart from "./UserLoanChart";
 
 const MyLoans = () => {
   const { user } = useAuth();
@@ -38,6 +39,8 @@ const MyLoans = () => {
       return res.data;
     },
   });
+
+  console.log(loans);
 
   const modalRef = useRef();
 
@@ -197,6 +200,7 @@ const MyLoans = () => {
           </tbody>
         </table>
       </div>
+      <LoanPieChart loans={loans} />
       {/* view modal */}
       <dialog
         id="my_modal_5"

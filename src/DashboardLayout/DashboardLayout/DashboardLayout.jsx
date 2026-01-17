@@ -15,7 +15,7 @@ import { RiFileList3Line } from "react-icons/ri";
 import useRole from "../../Hooks/useRole";
 import Toggle from "../../components/Toggle";
 import Footer from "../../MainLayout/Shared/Footer";
-import { FaCashRegister, FaUser } from "react-icons/fa6";
+import { FaCashRegister, FaPersonRifle, FaUser } from "react-icons/fa6";
 import useAuth from "../../Hooks/useAuth";
 
 const DashboardLayout = () => {
@@ -136,6 +136,23 @@ const DashboardLayout = () => {
                     <RiFileList3Line />
                     <span className="is-drawer-close:hidden">
                       Loan Applications
+                    </span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/admin-profile"
+                    className={({ isActive }) =>
+                      `${
+                        isActive ? "bg-black text-white" : ""
+                      } is-drawer-close:tooltip    is-drawer-close:tooltip-right border border-black mt-3`
+                    }
+                    data-tip="Admin Profile"
+                  >
+                    {/* loan application icon */}
+                    <FaPersonRifle />
+                    <span className="is-drawer-close:hidden">
+                      Admin Profile
                     </span>
                   </NavLink>
                 </li>

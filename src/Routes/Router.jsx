@@ -30,6 +30,7 @@ import About from "../MainLayout/Pages/About";
 import Contact from "../MainLayout/Pages/Contact";
 import PageNotFound from "../components/PageNotFound";
 import PaymentCancelled from "../DashboardLayout/Payment/PaymentCancelled";
+import AdminProfile from "../DashboardLayout/AdminPages/AdminProfile";
 
 const router = createBrowserRouter(
   createRoutesFromElements([
@@ -89,6 +90,14 @@ const router = createBrowserRouter(
         element={
           <AdminRoute>
             <LoanApplications />
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/dashboard/admin-profile"
+        element={
+          <AdminRoute>
+            <AdminProfile />
           </AdminRoute>
         }
       />

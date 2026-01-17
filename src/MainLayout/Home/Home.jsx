@@ -5,6 +5,9 @@ import HowItWorks from "./HowItWorks";
 import FeedBack from "./FeedBack";
 import Faq from "./Faq";
 import NewsLetter from "./NewsLetter";
+import Statistics from "./Statistics";
+import ServicesSection from "./Services";
+import EligibilitySection from "./Requirement";
 
 const Home = () => {
   return (
@@ -14,6 +17,9 @@ const Home = () => {
       <HowItWorks />
       <FeedBack />
       <Faq />
+      <Statistics />
+      <ServicesSection />
+      <EligibilitySection />
       <NewsLetter />
     </div>
   );

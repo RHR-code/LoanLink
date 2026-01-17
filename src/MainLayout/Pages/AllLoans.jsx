@@ -84,8 +84,8 @@ const AllLoans = () => {
         </select>
       </div>
 
-      <div className="flex">
-        <div className="flex w-2/12 mr-5">
+      <div className="flex flex-col md:flex-row md:border-t-2 border-primary">
+        <div className="flex text-center md:w-2/12 md:mr-5 md:border-r-2 border-primary md:pr-5">
           <div>
             <h2 className="text-center my-2 font-bold">Categories</h2>
             {loanCategories.map((item, i) => (
@@ -93,15 +93,17 @@ const AllLoans = () => {
                 onClick={() => setCategoryText(item)}
                 key={i}
                 className={`${
-                  item === categoryText ? "btn-primary" : "btn-outline"
-                } btn btn-primary  w-full my-1 `}
+                  item === categoryText
+                    ? "btn-primary text-primary md:text-black"
+                    : "btn-outline"
+                } md:btn btn-primary md:w-full gap-5 px-2 my-1 `}
               >
                 {item}
               </button>
             ))}
           </div>
         </div>
-        <div className="w-10/12 flex justify-center  flex-col items-center">
+        <div className="md:w-10/12 flex justify-center pt-4 flex-col items-center">
           <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 ">
             {loans.map((loan) => (
               <LoanCard key={loan._id} loan={loan} />
